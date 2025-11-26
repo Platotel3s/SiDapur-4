@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class GambarProduk extends Model
 {
-    protected $fillable=[
+    protected $fillable = [
         'id_produk',
-        'gambar'
+        'gambar',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Products::class);
+    }
 }

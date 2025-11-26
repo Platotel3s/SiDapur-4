@@ -7,15 +7,15 @@
     </div>
     <div class="mb-6 lg:mb-8 flex justify-center">
         @auth
-        <a href="{{Auth::user()->role==='admin'?route('admin.dashboard') : route('customer.dashboard')}}" 
-           class="block hover:scale-105 transition-transform duration-300">
+        <a href="{{Auth::user()->role==='admin'?route('admin.dashboard') : route('customer.dashboard')}}"
+            class="block hover:scale-105 transition-transform duration-300">
             <img src="{{ Auth::user()->image ?? asset('images/king.png') }}" alt="logo"
                 class="h-20 w-20 lg:h-24 lg:w-24 rounded-full border-4 border-slate-600 object-cover shadow-lg">
         </a>
         @else
         <a href="{{ url('/') }}" class="block hover:scale-105 transition-transform duration-300">
             <img src="{{ asset('images/king.png') ?? 'https://i.pinimg.com/1200x/8c/6c/db/8c6cdbd18862893b595c2f93f2731efd.jpg' }}"
-                alt="logo" 
+                alt="logo"
                 class="h-20 w-20 lg:h-24 lg:w-24 rounded-full border-4 border-slate-600 object-cover shadow-lg">
         </a>
         @endauth
@@ -35,15 +35,34 @@
             <i class="fas fa-chart-area w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
             <span>Data Pengguna</span>
         </a>
-        <a href="{{ route('index.categories')}}" 
-           class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group {{request()->routeIs('index.categories') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}">
+        <a href="{{ route('index.categories')}}"
+            class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group {{request()->routeIs('index.categories') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}">
             <i class="fas fa-list w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
             <span>Daftar Kategori</span>
         </a>
+        <a href="{{ route('index.products')}}"
+            class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group {{request()->routeIs('index.products') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}">
+            <i class="fas fa-box w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
+            <span>Daftar Produk</span>
+        </a>
         @elseif(Auth::user()->role==='customer')
-        <a href="#" class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group">
+
+        <a href="{{ route('cart.index') }}"
+            class="relative flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition">
             <i class="fas fa-basket-shopping w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
             <span>Keranjang</span>
+
+            @if(isset($cartCount) && $cartCount > 0)
+            <span class="absolute -top-1 left-6 bg-red-600 text-white text-xs font-bold rounded-full px-2 py-0.5">
+                {{ $cartCount }}
+            </span>
+            @endif
+        </a>
+
+        <a href="{{ route('customer.products') }}"
+            class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group">
+            <i class="fas fa-basket-shopping w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
+            <span>Produk Customer</span>
         </a>
         @endif
         @endauth
@@ -57,7 +76,7 @@
             <i class="fas fa-key w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
             <span>Update Password</span>
         </a>
-        
+
         @auth
         <form action="{{route('logout')}}" method="post" class="pt-2">
             @csrf
@@ -72,14 +91,14 @@
 </nav>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const closeMobileMenu = document.getElementById('closeMobileMenu');
         if (closeMobileMenu) {
-            closeMobileMenu.addEventListener('click', function() {
+            closeMobileMenu.addEventListener('click', function () {
                 const mobileNavigation = document.getElementById('mobileNavigation');
                 const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
                 const body = document.body;
-                
+
                 mobileNavigation.classList.remove('translate-x-0');
                 mobileNavigation.classList.add('-translate-x-full');
                 mobileMenuOverlay.classList.add('hidden');

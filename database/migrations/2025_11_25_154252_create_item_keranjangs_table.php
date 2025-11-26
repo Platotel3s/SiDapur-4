@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('item_keranjangs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_keranjang')->constrained('keranjangs')->onDelete('cascade');
-            $table->foreignId('id_produk')->constrained('produks')->onDelete('cascade');
+            $table->foreignId('id_produk')->constrained('products')->onDelete('cascade');
             $table->integer('kuantitas');
             $table->decimal('subtotal', 12, 2);
             $table->timestamps();

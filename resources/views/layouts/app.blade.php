@@ -10,7 +10,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="h-full bg-gradient-to-br from-black to-red-500">
+<body class="h-full bg-gradient-to-br from-black to-red-500 bg-fixed">
     <div class="lg:hidden fixed top-4 left-4 z-50">
         <button id="mobileMenuButton" class="p-2 bg-black text-white rounded-lg shadow-lg">
             <i class="fas fa-bars text-xl"></i>

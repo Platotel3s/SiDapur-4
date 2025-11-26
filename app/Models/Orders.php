@@ -15,4 +15,24 @@ class Orders extends Model
         'payment_method',
         'payment_status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function alamat()
+    {
+        return $this->belongsTo(Addresses::class);
+    }
+
+    public function itemOrder()
+    {
+        return $this->hasMany(OrderItems::class);
+    }
+
+    public function payment()
+    {
+        $this->hasOne(Payments::class);
+    }
 }

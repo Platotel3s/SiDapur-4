@@ -12,4 +12,10 @@ class ItemKeranjang extends Model
         'kuantitas',
         'subtotal',
     ];
+    public function keranjang(){
+        return $this->belongsTo(Keranjang::class);
+    }
+    public function produk() {
+        return $this->belongsTo(Products::class,'id_produk');
+    }
 }

@@ -13,4 +13,7 @@ class Payments extends Model
         'paid_at',
         'amount',
     ];
+    public function order(){
+        return $this->belongsTo(Orders::class);
+    }
 }

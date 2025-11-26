@@ -16,4 +16,19 @@ class Products extends Model
         'unit',
         'thumbnail',
     ];
+
+    public function gambar()
+    {
+        return $this->hasMany(GambarProduk::class);
+    }
+
+    public function itemProduct()
+    {
+        return $this->hasMany(OrderItems::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Categories::class);
+    }
 }
