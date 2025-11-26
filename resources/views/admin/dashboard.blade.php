@@ -3,5 +3,5 @@
 @section('title', 'Admin Panel')
 
 @section('content')
-<p>ini {{Auth::user()->role}}</p>
+<p class="text-white">Assalamualaikum</p>
 @endsection
