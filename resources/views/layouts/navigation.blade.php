@@ -3,7 +3,6 @@
         <a href="/" class="text-2xl font-bold text-blue-600 hover:text-blue-700">
             SiDapur
         </a>
-
         <div class="flex flex-col items-center space-x-4">
             @auth
             @if (Auth::user()->role === 'admin')

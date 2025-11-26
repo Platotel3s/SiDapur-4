@@ -42,6 +42,11 @@
                     class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     required>
             </div>
+            <div class="flex items-center gap-2 mt-2">
+                <input type="checkbox" id="showPw" onclick="showPassword()"
+                    class="w-4 h-4 text-blue-600 border-gray-300 rounded">
+                <label for="showPw" class="text-sm text-gray-700">Tampilkan Password</label>
+            </div>
             <div class="mb-4">
                 <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-1">
                     Konfirmasi Password
@@ -50,9 +55,16 @@
                     class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Ulangi password Anda">
             </div>
+            <div class="flex items-center gap-2 mt-2">
+                <input type="checkbox" id="showPwConfirmCheck" onclick="showPwConfirm()"
+                    class="w-4 h-4 text-blue-600 border-gray-300 rounded">
+                <label for="showPwConfirmCheck" class="text-sm text-gray-700">Tampilkan Password</label>
+            </div>
             <div>
-                    <label for="phone" class="block text-gray-700 font-medium">Nomor Handphone</label>
-                    <input type="text" name="phone" id="phone" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none" required placeholder="nomor telepon">
+                <label for="phone" class="block text-gray-700 font-medium">Nomor Handphone</label>
+                <input type="text" name="phone" id="phone"
+                    class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    required placeholder="nomor telepon">
             </div>
             <button type="submit"
                 class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200">
@@ -65,7 +77,25 @@
             </p>
         </form>
     </div>
+    <script>
+        function showPassword() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
 
+        function showPwConfirm() {
+            var y = document.getElementById("password_confirmation");
+            if (y.type === "password") {
+                y.type = "text";
+            } else {
+                y.type = "password";
+            }
+        }
+    </script>
 </body>
 
 </html>

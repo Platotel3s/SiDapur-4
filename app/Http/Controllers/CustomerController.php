@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Produk;
+
+use App\Models\Products;
+
 class CustomerController extends Controller
 {
     public function dashboard()
@@ -11,7 +13,7 @@ class CustomerController extends Controller
 
     public function tampilProduk()
     {
-        $products = Produk::all();
+        $products = Products::all();
 
         return view('customer.dashboard', compact('products'));
     }

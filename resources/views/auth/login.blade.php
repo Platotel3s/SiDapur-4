@@ -31,12 +31,14 @@
 
             <div>
                 <label for="password" class="block text-gray-700 font-medium">Password</label>
-                <input type="password" name="password" id="password" placeholder="********"
-                    class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    required>
-                <button type="button" id="togglePassword" class="p-2 shadow-sm shadow-gray-800 rounded-lg mt-3">
-                    Show Password
-                </button>
+                <div class="relative">
+                    <input type="password" name="password" id="password" placeholder="********"
+                        class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        required>
+
+                    <input type="checkbox" id="showPw" class="mt-2">
+                    <label for="showPw">Tampilkan Password</label>
+                </div>
             </div>
 
             <button type="submit"
@@ -50,7 +52,15 @@
             </p>
         </form>
     </div>
-    <script src="{{ asset('js/login.js') }}"></script>
+
+    <script>
+        // Fungsi show/hide password
+        document.getElementById("showPw").addEventListener("click", function () {
+            const pwField = document.getElementById("password");
+            pwField.type = pwField.type === "password" ? "text" : "password";
+        });
+    </script>
+
 </body>
 
 </html>
