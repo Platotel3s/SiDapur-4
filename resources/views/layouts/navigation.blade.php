@@ -58,25 +58,15 @@
             </span>
             @endif
         </a>
-
-        <a href="{{ route('customer.products') }}"
-            class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group">
-            <i class="fas fa-basket-shopping w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
-            <span>Produk Customer</span>
-        </a>
         @endif
         @endauth
     </div>
     <div class="border-t border-slate-700 pt-4 lg:pt-6 mt-6 lg:mt-8 space-y-1 lg:space-y-2">
-        <a href="#" class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group">
+        <a href="{{ route('profile') }}"
+            class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group">
             <i class="fas fa-user w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
-            <span>Update Profile</span>
+            <span>Profile</span>
         </a>
-        <a href="#" class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group">
-            <i class="fas fa-key w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
-            <span>Update Password</span>
-        </a>
-
         @auth
         <form action="{{route('logout')}}" method="post" class="pt-2">
             @csrf

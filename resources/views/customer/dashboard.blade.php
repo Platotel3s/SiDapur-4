@@ -7,7 +7,7 @@
 
     <div class="rounded-xl shadow p-6">
         <div class="grid gap-4 sm:grid-cols-2">
-            <p>ini dashboard customer</p>
+            @include('customer.products.index')
         </div>
     </div>
 </div>

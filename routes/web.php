@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
@@ -22,6 +23,12 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [AuthController::class, 'profile'])->name('profile')->middleware('auth');
+    Route::post('/profile/update-password', [AuthController::class, 'updatePassword'])->name('profile.password');
+
+});
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(CategoriesController::class)->group(function () {
         Route::get('/index/categories', 'index')->name('index.categories');
@@ -34,7 +41,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(AdminController::class)->group(function () {
         Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
     });
-    Route::controller(ProductController::class)->group(function(){
+    Route::controller(ProductController::class)->group(function () {
         Route::get('/index/products', 'index')->name('index.products');
         Route::get('/create/products', 'create')->name('create.products');
         Route::post('/store/products', 'store')->name('store.products');
@@ -44,16 +51,29 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::delete('/destroy/{id}/products', 'destroy')->name('delete.products');
     });
 });
+
+/* ----------------------------------------------------------------------------------------- */
+
 Route::middleware(['auth', 'role:customer'])->group(function () {
     Route::controller(CustomerController::class)->group(function () {
         Route::get('/customer/dashboard', 'dashboard')->name('customer.dashboard');
     });
-    Route::controller(CustomerProductController::class)->group(function(){
-        Route::get('/products','index')->name('customer.products');
-        Route::get('/products/{id}','show')->name('customer.products.show');
+    Route::controller(CustomerProductController::class)->group(function () {
+        Route::get('/products', 'index')->name('customer.products');
+        Route::get('/products/{id}', 'show')->name('customer.products.show');
     });
-    Route::controller(CartController::class)->group(function(){
-        Route::post('/cart/add/{products}','add')->name('cart.add');
-        Route::get('/cart','index')->name('cart.index');
+    Route::controller(CartController::class)->group(function () {
+        Route::post('/cart/add/{products}', 'add')->name('cart.add');
+        Route::get('/cart', 'index')->name('cart.index');
+        Route::post('/cart/update/{id}', 'updateQuantity')->name('cart.update');
+        Route::delete('/delete/item/{id}', 'removeItem')->name('cart.remove');
+        Route::post('/checkout', 'checkout')->name('checkout');
+        Route::get('/order/success/{id}', 'orderSuccess')->name('order.success');
+    });
+    Route::controller(AddressController::class)->group(function () {
+        Route::get('/alamat', 'index')->name('alamat.index');
+        Route::get('/alamat/tambah', 'create')->name('alamat.create');
+        Route::post('/alamat/tambah', 'store')->name('alamat.store');
+        Route::post('/alamat/set-utama/{id}', 'setUtama')->name('alamat.setUtama');
     });
 });

@@ -5,18 +5,13 @@
 @section('content')
 <div class="container mx-auto px-4 sm:px-6 py-6">
     <div class="max-w-4xl mx-auto">
-        <!-- Header Section -->
         <div class="mb-8 text-center">
             <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">Tambah Produk Baru</h1>
             <p class="text-gray-300">Isi form berikut untuk menambahkan produk baru</p>
         </div>
-
-        <!-- Form Section -->
         <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6 sm:p-8">
             <form action="{{ route('store.products') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
-
-                <!-- Product Name -->
                 <div class="space-y-2">
                     <label class="block text-gray-700 font-semibold mb-2">
                         Nama Produk <span class="text-red-500">*</span>
@@ -35,8 +30,6 @@
                     </p>
                     @enderror
                 </div>
-
-                <!-- Slug -->
                 <div class="space-y-2">
                     <label class="block text-gray-700 font-semibold mb-2">
                         Slug <span class="text-red-500">*</span>
@@ -55,8 +48,6 @@
                     </p>
                     @enderror
                 </div>
-
-                <!-- Category ID -->
                 <div class="space-y-2">
                     <label class="block text-gray-700 font-semibold mb-2">
                         Kategori <span class="text-red-500">*</span>
@@ -82,8 +73,6 @@
                     </p>
                     @enderror
                 </div>
-
-                <!-- Description -->
                 <div class="space-y-2">
                     <label class="block text-gray-700 font-semibold mb-2">
                         Deskripsi
@@ -102,10 +91,7 @@
                     </p>
                     @enderror
                 </div>
-
-                <!-- Price and Stock -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Price -->
                     <div class="space-y-2">
                         <label class="block text-gray-700 font-semibold mb-2">
                             Harga <span class="text-red-500">*</span>
@@ -124,8 +110,6 @@
                         </p>
                         @enderror
                     </div>
-
-                    <!-- Stock and Unit -->
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-2">
                             <label class="block text-gray-700 font-semibold mb-2">
@@ -143,8 +127,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Thumbnail -->
                 <div class="space-y-2">
                     <label class="block text-gray-700 font-semibold mb-2">
                         Thumbnail
@@ -163,8 +145,6 @@
                     </p>
                     @enderror
                 </div>
-
-                <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 pt-6">
                     <button type="submit"
                         class="flex-1 bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 transform hover:-translate-y-0.5 flex items-center justify-center">

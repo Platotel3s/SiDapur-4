@@ -8,7 +8,9 @@ class CustomerController extends Controller
 {
     public function dashboard()
     {
-        return view('customer.dashboard');
+        $products = Products::all();
+
+        return view('customer.dashboard',compact('products'));
     }
 
     public function tampilProduk()

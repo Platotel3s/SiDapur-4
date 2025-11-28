@@ -16,10 +16,7 @@
             Tambah Kategori
         </a>
     </div>
-
-    <!-- Table Section -->
     <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
-        <!-- Desktop Table -->
         <div class="hidden md:block overflow-x-auto">
             <table class="w-full min-w-full">
                 <thead class="bg-gray-50 border-b border-gray-200">
@@ -91,8 +88,6 @@
                 </tbody>
             </table>
         </div>
-
-        <!-- Mobile Cards -->
         <div class="md:hidden space-y-4 p-4">
             @forelse ($categories as $item)
             <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
@@ -148,16 +143,12 @@
             @endforelse
         </div>
     </div>
-
-    <!-- Pagination (if needed) -->
     @if($categories->hasPages())
     <div class="mt-6">
         {{ $categories->links() }}
     </div>
     @endif
 </div>
-
-<!-- Custom Styles -->
 <style>
     @media (max-width: 768px) {
         .container {

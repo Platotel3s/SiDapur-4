@@ -36,10 +36,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Addresses::class);
     }
-    public function cart(){
+
+    public function cart()
+    {
         return $this->hasOne(Keranjang::class);
     }
-    public function orders(){
+
+    public function orders()
+    {
         return $this->hasMany(Orders::class);
+    }
+
+    public function defaultAddress()
+    {
+        return $this->hasOne(Addresses::class)->where('alamatUtama', true);
     }
 }

@@ -82,4 +82,9 @@ class AuthController extends Controller
 
         return back()->with('success', 'Berhasil ganti password');
     }
+
+    public function profile()
+    {
+        return view('auth.profile');
+    }
 }
