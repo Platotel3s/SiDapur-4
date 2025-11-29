@@ -75,9 +75,13 @@ class CartController extends Controller
             return $item->kuantitas * $item->produk->price;
         });
         $orderNumber = 'ORD-'.strtoupper(Str::random(8));
+        $defaultAddress = auth()->user()->defaultAddress;
+        if (! $defaultAddress) {
+            return back()->withErrors('Anda belum memiliki alamat utama');
+        }
         $order = Orders::create([
             'user_id' => auth()->id(),
-            'address_id' => auth()->user()->default_address_id ?? null,
+            'address_id' => $defaultAddress->id,
             'order_number' => $orderNumber,
             'total_price' => $totalPrice,
             'status' => 'pending',

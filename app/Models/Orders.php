@@ -28,7 +28,7 @@ class Orders extends Model
 
     public function itemOrder()
     {
-        return $this->hasMany(OrderItems::class);
+        return $this->hasMany(OrderItems::class, 'order_id');
     }
 
     public function payment()

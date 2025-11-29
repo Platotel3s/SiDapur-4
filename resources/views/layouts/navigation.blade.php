@@ -48,8 +48,8 @@
         @elseif(Auth::user()->role==='customer')
 
         <a href="{{ route('cart.index') }}"
-            class="relative flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition">
-            <i class="fas fa-basket-shopping w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
+            class="relative flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition {{request()->routeIs('cart.index') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}"">
+            <i class=" fas fa-basket-shopping w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
             <span>Keranjang</span>
 
             @if(isset($cartCount) && $cartCount > 0)
@@ -57,6 +57,16 @@
                 {{ $cartCount }}
             </span>
             @endif
+        </a>
+        <a href="{{route('customer.orders')}}"
+            class="relative flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition {{request()->routeIs('customer.orders') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}"">
+            <i class=" fas fa-grip-vertical w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
+            <span>Pesanan</span>
+        </a>
+        <a href="{{route('customerList')}}"
+            class="relative flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition {{request()->routeIs('customerList') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}"">
+            <i class=" fas fa-cash-register w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
+            <span>List Pembayaran customer</span>
         </a>
         @endif
         @endauth

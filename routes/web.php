@@ -7,6 +7,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerProductController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +52,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::patch('/update/{id}/products', 'update')->name('update.products');
         Route::delete('/destroy/{id}/products', 'destroy')->name('delete.products');
     });
+    Route::controller(PaymentController::class)->group(function () {
+        Route::get('/admin/payments', 'adminList')->name('admin.payment.list');
+        Route::post('/admin/payment/verify/{id}', 'verifyPayment')->name('admin.payment.verify');
+    });
+
 });
 
 /* ----------------------------------------------------------------------------------------- */
@@ -76,4 +83,15 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
         Route::post('/alamat/tambah', 'store')->name('alamat.store');
         Route::post('/alamat/set-utama/{id}', 'setUtama')->name('alamat.setUtama');
     });
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/order/list', 'orderList')->name('customer.orders');
+        Route::get('/order/detail/{id}', 'orderDetail')->name('customer.order.detail');
+        Route::get('/order/success', 'orderSuccess');
+    });
+    Route::controller(PaymentController::class)->group(function () {
+        Route::get('/order/payment/{id}', 'showPaymentForm')->name('customer.payment.form');
+        Route::post('/order/payment/{id}', 'storePayment')->name('customer.payment.store');
+        Route::get('/customer/payments', 'customerList')->name('customerList');
+    });
+
 });
