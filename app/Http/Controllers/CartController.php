@@ -77,7 +77,7 @@ class CartController extends Controller
         $orderNumber = 'ORD-'.strtoupper(Str::random(8));
         $defaultAddress = auth()->user()->defaultAddress;
         if (! $defaultAddress) {
-            return back()->withErrors('Anda belum memiliki alamat utama');
+            return back()->with('error', 'Anda belum memiliki alamat utama');
         }
         $order = Orders::create([
             'user_id' => auth()->id(),

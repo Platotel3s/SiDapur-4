@@ -14,7 +14,8 @@
             <label class="block text-gray-700 font-semibold mb-2">
                 Nama Kategori <span class="text-red-500">*</span>
             </label>
-            <input type="text" name="name" value="{{ old('name',$selectedCategory->name) }}" placeholder="Contoh: Makanan, Elektronik, Fashion"
+            <input type="text" name="name" value="{{ old('name',$selectedCategory->name) }}"
+                placeholder="Contoh: Makanan, Elektronik, Fashion"
                 class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition duration-200"
                 autofocus>
             @error('name')
@@ -32,7 +33,8 @@
             <label class="block text-gray-700 font-semibold mb-2">
                 Slug <span class="text-red-500">*</span>
             </label>
-            <input type="text" name="slug" value="{{ old('slug',$selectedCategory->slug) }}" placeholder="Contoh: makanan, elektronik, fashion"
+            <input type="text" name="slug" value="{{ old('slug',$selectedCategory->slug) }}"
+                placeholder="Contoh: makanan, elektronik, fashion"
                 class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition duration-200">
             @error('slug')
             <p class="text-red-600 text-sm mt-1 flex items-center">
@@ -63,6 +65,11 @@
             </a>
         </div>
     </form>
+    @if (session('success'))
+    <div class="text-center p-2 rounded-md shadow-md text-white bg-green-500">
+        {{session('success')}}
+    </div>
+    @endif
 </div>
 <style>
     .shadow-custom {

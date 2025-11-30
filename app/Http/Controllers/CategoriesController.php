@@ -57,6 +57,6 @@ class CategoriesController extends Controller
         $selectedCategory = Categories::findOrFail($id);
         $selectedCategory->delete();
 
-        return redirect()->route('index.categories')->with('success', 'Berhasil hapus');
+        return redirect()->route('index.categories')->with('success', $selectedCategory->name.' Berhasil hapus');
     }
 }

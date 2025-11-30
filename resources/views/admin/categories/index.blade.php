@@ -7,6 +7,11 @@
         <div>
             <h1 class="text-2xl font-bold text-gray-100 mb-2">Daftar Kategori</h1>
             <p class="text-gray-100 text-sm">Kelola kategori produk Anda dengan mudah</p>
+            @if (session('success'))
+            <div class="bg-green-700 rounded-md shadow-md text-white p-2 text-center">
+                {{session('success')}}
+            </div>
+            @endif
         </div>
         <a href="{{ route('create.categories') }}"
             class="w-full sm:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-200 font-semibold flex items-center justify-center gap-2 shadow-md">

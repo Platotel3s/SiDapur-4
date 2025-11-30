@@ -5,6 +5,11 @@
     <div class="mb-8 text-center">
         <h2 class="text-3xl font-bold text-gray-800 mb-2">Tambah Kategori Baru</h2>
         <p class="text-gray-600">Isi form berikut untuk menambahkan kategori baru</p>
+        @if (session('success'))
+        <div class="p-2 text-center bg-green-500 text-black rounded-md shadow-md">
+            {{session('success')}}
+        </div>
+        @endif
     </div>
     <form action="{{ route('store.categories') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf

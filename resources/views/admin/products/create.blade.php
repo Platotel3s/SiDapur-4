@@ -1,7 +1,5 @@
-{{-- resources/views/admin/products/create.blade.php --}}
 @extends('layouts.app')
 @section('title', 'Tambah Produk')
-
 @section('content')
 <div class="container mx-auto px-4 sm:px-6 py-6">
     <div class="max-w-4xl mx-auto">
