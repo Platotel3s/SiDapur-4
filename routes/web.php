@@ -42,6 +42,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
     Route::controller(AdminController::class)->group(function () {
         Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
+        Route::get('/admin/daftar/user', 'indexCustomer')->name('index.user');
     });
     Route::controller(ProductController::class)->group(function () {
         Route::get('/index/products', 'index')->name('index.products');

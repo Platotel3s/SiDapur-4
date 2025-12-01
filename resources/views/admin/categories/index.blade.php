@@ -21,7 +21,7 @@
             Tambah Kategori
         </a>
     </div>
-    <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+    <div class="bg-white/20 rounded-xl shadow-lg border border-gray-100 overflow-hidden">
         <div class="hidden md:block overflow-x-auto">
             <table class="w-full min-w-full">
                 <thead class="bg-gray-50 border-b border-gray-200">
