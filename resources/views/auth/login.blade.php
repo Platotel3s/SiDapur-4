@@ -19,45 +19,100 @@
         </div>
         @endif
 
+        @if ($errors->any())
+        <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+            <ul class="list-disc list-inside">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
         <form action="{{ route('login') }}" method="POST" class="space-y-5">
             @csrf
 
             <div>
-                <label for="login" class="block text-gray-700 font-medium">Email / Nomor Telepon</label>
+                <label for="login" class="block text-gray-700 font-medium mb-1">Email / Nomor Telepon</label>
                 <input type="text" name="login" id="login"
-                    class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    value="{{ old('email') }}" required placeholder="user@gmail.com">
+                    class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition"
+                    value="{{ old('login') }}" required placeholder="contoh@email.com atau 081234567890">
+                @error('login')
+                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                @enderror
             </div>
 
             <div>
-                <label for="password" class="block text-gray-700 font-medium">Password</label>
+                <label for="password" class="block text-gray-700 font-medium mb-1">Password</label>
                 <div class="relative">
-                    <input type="password" name="password" id="password" placeholder="********"
-                        class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                        required>
+                    <input type="password" name="password" id="password"
+                        class="w-full border border-gray-300 rounded-lg p-3 pr-10 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition"
+                        required placeholder="Masukkan password">
 
-                    <input type="checkbox" id="showPw" class="mt-2">
-                    <label for="showPw">Tampilkan Password</label>
+                    <button type="button" id="togglePassword"
+                        class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700">
+                        <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                            <path fill-rule="evenodd"
+                                d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <svg id="eyeSlashIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden"
+                            viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z"
+                                clip-rule="evenodd" />
+                            <path
+                                d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
+                        </svg>
+                    </button>
                 </div>
+                @error('password')
+                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="flex items-center">
+                <input type="checkbox" id="remember" name="remember" class="h-4 w-4 text-blue-600 rounded">
+                <label for="remember" class="ml-2 text-gray-700">Ingat saya</label>
             </div>
 
             <button type="submit"
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200">
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200 shadow-md hover:shadow-lg">
                 Masuk
             </button>
 
             <p class="text-center text-gray-600 mt-3">
                 Belum punya akun?
-                <a href="{{ route('regis.page') }}" class="text-blue-600 hover:underline">Daftar</a>
+                <a href="{{ route('regis.page') }}" class="text-blue-600 hover:underline font-medium">Daftar di sini</a>
             </p>
         </form>
     </div>
 
     <script>
-        // Fungsi show/hide password
-        document.getElementById("showPw").addEventListener("click", function () {
-            const pwField = document.getElementById("password");
-            pwField.type = pwField.type === "password" ? "text" : "password";
+        document.addEventListener('DOMContentLoaded', function () {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordField = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            const eyeSlashIcon = document.getElementById('eyeSlashIcon');
+
+            togglePassword.addEventListener('click', function () {
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+
+                // Toggle icon visibility
+                if (type === 'text') {
+                    eyeIcon.classList.add('hidden');
+                    eyeSlashIcon.classList.remove('hidden');
+                } else {
+                    eyeIcon.classList.remove('hidden');
+                    eyeSlashIcon.classList.add('hidden');
+                }
+            });
+
+            // Auto-focus on login field
+            document.getElementById('login').focus();
         });
     </script>
 
