@@ -10,7 +10,7 @@ class OrderController extends Controller
     {
         $orders = Orders::where('user_id', auth()->id())
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(5);
 
         return view('customer.order', compact('orders'));
     }
