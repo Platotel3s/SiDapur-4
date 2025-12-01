@@ -111,7 +111,7 @@
             </div>
 
             <div class="flex items-start">
-                <input type="checkbox" id="terms" name="terms" value="1" required
+                <input type="checkbox" id="terms" name="terms" value="1"
                     class="h-4 w-4 text-blue-600 border-gray-300 rounded mt-1">
                 <label for="terms" class="ml-2 text-gray-700 text-sm">
                     Saya menyetujui <a href="#" class="text-blue-600 hover:underline">Syarat & Ketentuan</a> dan <a
