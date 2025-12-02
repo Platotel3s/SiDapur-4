@@ -8,10 +8,10 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+<body class="bg-gradient-to-br from-black to-red-600 flex justify-center items-center min-h-screen">
 
-    <div class="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-        <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Masuk Akun</h2>
+    <div class="w-full max-w-md bg-white/10 border border-amber-600 rounded-2xl shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-center mb-6 text-gray-100">Masuk Akun</h2>
 
         @if (session('error'))
         <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
@@ -33,9 +33,9 @@
             @csrf
 
             <div>
-                <label for="login" class="block text-gray-700 font-medium mb-1">Email / Nomor Telepon</label>
+                <label for="login" class="block text-gray-100 font-medium mb-1">Email / Nomor Telepon</label>
                 <input type="text" name="login" id="login"
-                    class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition"
+                    class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 focus:outline-none transition text-gray-100"
                     value="{{ old('login') }}" required placeholder="contoh@email.com atau 081234567890">
                 @error('login')
                 <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
@@ -43,14 +43,14 @@
             </div>
 
             <div>
-                <label for="password" class="block text-gray-700 font-medium mb-1">Password</label>
+                <label for="password" class="block text-gray-100 font-medium mb-1">Password</label>
                 <div class="relative">
                     <input type="password" name="password" id="password"
-                        class="w-full border border-gray-300 rounded-lg p-3 pr-10 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition"
+                        class="w-full border border-gray-300 rounded-lg p-3 pr-10 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 focus:outline-none transition text-white"
                         required placeholder="Masukkan password">
 
                     <button type="button" id="togglePassword"
-                        class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700">
+                        class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-800 hover:text-gray-800">
                         <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -74,47 +74,24 @@
             </div>
 
             <div class="flex items-center">
-                <input type="checkbox" id="remember" name="remember" class="h-4 w-4 text-blue-600 rounded">
-                <label for="remember" class="ml-2 text-gray-700">Ingat saya</label>
+                <input type="checkbox" id="remember" name="remember" class="h-4 w-4 text-yellow-600 rounded">
+                <label for="remember" class="ml-2 text-gray-100">Ingat saya</label>
             </div>
 
             <button type="submit"
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200 shadow-md hover:shadow-lg">
+                class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-3 rounded-lg transition duration-200 shadow-md hover:shadow-lg">
                 Masuk
             </button>
 
-            <p class="text-center text-gray-600 mt-3">
+            <p class="text-center text-gray-100 mt-3">
                 Belum punya akun?
-                <a href="{{ route('regis.page') }}" class="text-blue-600 hover:underline font-medium">Daftar di sini</a>
+                <a href="{{ route('regis.page') }}" class="text-black font-semibold hover:underline font-medium">Daftar
+                    di sini</a>
             </p>
         </form>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const togglePassword = document.getElementById('togglePassword');
-            const passwordField = document.getElementById('password');
-            const eyeIcon = document.getElementById('eyeIcon');
-            const eyeSlashIcon = document.getElementById('eyeSlashIcon');
-
-            togglePassword.addEventListener('click', function () {
-                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordField.setAttribute('type', type);
-
-                // Toggle icon visibility
-                if (type === 'text') {
-                    eyeIcon.classList.add('hidden');
-                    eyeSlashIcon.classList.remove('hidden');
-                } else {
-                    eyeIcon.classList.remove('hidden');
-                    eyeSlashIcon.classList.add('hidden');
-                }
-            });
-
-            // Auto-focus on login field
-            document.getElementById('login').focus();
-        });
-    </script>
+    <script src="{{ asset('js/login.js') }}"></script>
 
 </body>
 

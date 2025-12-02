@@ -46,7 +46,7 @@
     </main>
 
     <footer class="bg-white/10 text-center py-4 text-gray-600 text-sm">
-        <p class="text-white">&copy; {{ date('Y') }} SiDapur - Semua Hak Dilindungi.</p>
+        <p class="text-white font-semibold">&copy; {{ date('Y') }} SiDapur - Semua Hak Dilindungi.</p>
     </footer>
 
 </body>
