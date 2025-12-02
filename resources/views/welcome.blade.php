@@ -8,8 +8,8 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gradient-to-br from-blue-500 to-purple-600 min-h-screen flex flex-col">
-    <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+<body class="bg-gradient-to-br from-black to-red-600 min-h-screen flex flex-col">
+    <nav class="bg-white/10 shadow-md py-4 px-6 flex justify-between items-center">
         <div class="text-2xl font-bold text-blue-600">
             SiDapur 🍳
         </div>
@@ -45,8 +45,8 @@
         </div>
     </main>
 
-    <footer class="bg-white text-center py-4 text-gray-600 text-sm">
-        &copy; {{ date('Y') }} SiDapur - Semua Hak Dilindungi.
+    <footer class="bg-white/10 text-center py-4 text-gray-600 text-sm">
+        <p class="text-white">&copy; {{ date('Y') }} SiDapur - Semua Hak Dilindungi.</p>
     </footer>
 
 </body>
