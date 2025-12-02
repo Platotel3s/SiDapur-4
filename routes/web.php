@@ -58,6 +58,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/payments', 'adminList')->name('admin.payment.list');
         Route::post('/admin/payment/verify/{id}', 'verifyPayment')->name('admin.payment.verify');
     });
+    Route::controller(OrderController::class)->group(function(){
+        Route::get('admin/orders','index')->name('admin.orders.index');
+        Route::post('/admin/orders/{order}/marked','sudahBayar')->name('mark.paid');
+    });
 
 });
 

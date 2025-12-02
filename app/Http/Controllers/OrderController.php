@@ -23,4 +23,21 @@ class OrderController extends Controller
 
         return view('customer.order_detail', compact('order'));
     }
+
+    public function index()
+    {
+        $orders = Orders::with('user', 'alamat')->orderBy('created_at', 'desc')->paginate(5);
+
+        return view('admin.orders.index', compact('orders'));
+    }
+
+    public function sudahBayar(Orders $order)
+    {
+        $order->update([
+            'payment_status' => 'paid',
+            'status' => 'paid',
+        ]);
+
+        return back()->with('success', 'Pembayaran Telah Dikonfirmasi');
+    }
 }

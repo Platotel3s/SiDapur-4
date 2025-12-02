@@ -37,10 +37,6 @@
             </div>
 
             <div class="flex gap-2">
-                <a href="#"
-                    class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-600 transition duration-200 font-medium text-sm">
-                    <i class="fas fa-edit"></i> Edit
-                </a>
                 <form action="{{route('hapus.customer',$user->id)}}" method="post" class="flex-1">
                     @csrf
                     <button type="submit"
@@ -89,10 +85,6 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex gap-2">
-                                <a href="#"
-                                    class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-600 transition duration-200 font-medium text-sm">
-                                    <i class="fas fa-edit"></i> Edit
-                                </a>
                                 <form action="{{ route('hapus.customer',$user->id) }}" method="post">
                                     @csrf
                                     <button type="submit"
