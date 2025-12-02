@@ -14,8 +14,8 @@
                 <div class="flex items-center gap-3">
                     <div class="relative">
                         <input type="text" placeholder="Cari pesanan..."
-                            class="pl-10 pr-4 py-2 border text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full sm:w-64">
-                        <svg class="absolute left-3 top-2.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor"
+                            class="pl-10 pr-4 py-2 border text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 w-full sm:w-64">
+                        <svg class="absolute left-3 top-2.5 w-5 h-5 text-gray-100" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -23,7 +23,7 @@
                     </div>
 
                     <select
-                        class="border border-gray-300 rounded-lg px-3 py-2 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        class="border border-gray-300 rounded-lg px-3 py-2 text-gray-100 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
                         <option value="">Semua Status</option>
                         <option value="pending">Pending</option>
                         <option value="processing">Diproses</option>
@@ -141,7 +141,7 @@
                             @endforeach
                             @if($order->itemOrder->count() > 3)
                             <div
-                                class="w-8 h-8 bg-gray-100 rounded-full border-2 border-white flex items-center justify-center">
+                                class="w-8 h-8 bg-gray-100/10 rounded-full border-2 border-white flex items-center justify-center">
                                 <span class="text-xs text-gray-100">+{{ $order->itemOrder->count() - 3 }}</span>
                             </div>
                             @endif
@@ -169,7 +169,7 @@
                 </div>
                 <div class="px-4 pb-4 pt-3 border-t border-gray-100">
                     <div class="flex gap-2">
-                        <a href="{{ route('customer.order.detail', $order->id) }}"
+                        <a href="{{ route('order.success', $order->id) }}"
                             class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-4 rounded-lg text-center transition duration-200">
                             <i class="fas fa-eye mr-2"></i>
                             Detail
@@ -204,7 +204,7 @@
             </div>
             @endforelse
         </div>
-        <div class="hidden lg:block bg-white/10 rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+        <div class="hidden lg:block bg-white/10 rounded-2xl shadow-lg border border-yellow-500 overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead class="bg-white/10">
@@ -271,7 +271,7 @@
                             </td>
                             <td class="py-4 px-6">
                                 <div class="flex items-center gap-2">
-                                    <a href="{{ route('customer.order.detail', $order->id) }}"
+                                    <a href="{{ route('order.success', $order->id) }}"
                                         class="px-4 py-2 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-lg transition duration-200 font-medium text-sm">
                                         <i class="fas fa-eye mr-1"></i>
                                         Detail

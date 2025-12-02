@@ -17,4 +17,12 @@ class AdminController extends Controller
 
         return view('admin.users.index', compact('customer'));
     }
+
+    public function destroyCustomer($id)
+    {
+        $pilih = User::findOrFail($id);
+        $pilih->delete();
+
+        return back()->with('success', 'Berhasil hapus customer '.$pilih->name);
+    }
 }

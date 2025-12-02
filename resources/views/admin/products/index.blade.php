@@ -205,5 +205,12 @@
             @endforelse
         </div>
     </div>
+    @if($products->hasPages())
+    <div class="mt-8">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+            {{ $products->links() }}
+        </div>
+    </div>
+    @endif
 </div>
 @endsection

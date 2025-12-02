@@ -15,8 +15,8 @@
             <p class="text-gray-300 text-lg">Pesanan kamu sudah kami terima dan sedang diproses</p>
         </div>
         <div class="lg:hidden space-y-4">
-            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
-                <div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-700">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-yellow-500">
+                <div class="flex items-center justify-between mb-4 pb-4 border-b border-yellow-500">
                     <div>
                         <h3 class="text-sm font-medium text-gray-400">Nomor Pesanan</h3>
                         <p class="text-xl font-bold text-white">{{ $order->order_number }}</p>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-yellow-500">
                 <h3 class="text-lg font-semibold text-white mb-4">Item Pesanan</h3>
                 <div class="space-y-4">
                     @foreach ($order->itemOrder as $item)
@@ -106,7 +106,8 @@
                 </button>
             </div>
         </div>
-        <div class="hidden lg:block bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700">
+        <div
+            class="hidden lg:block bg-gray-100/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-yellow-500">
             <div class="p-8 border-b border-gray-700">
                 <div class="flex justify-between items-start">
                     <div>

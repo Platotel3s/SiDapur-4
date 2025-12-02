@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('title','Tampilkan produk')
 @section('content')
-<div class="max-w-5xl mx-auto px-4 py-6 flex flex-col md:flex-row gap-6">
+<div class="max-w-5xl mx-auto px-4 py-6 flex flex-col md:flex-row gap-6 bg-white/10 border border-yellow-500 rounded-lg">
 
     <img src="{{ asset('storage/' . $selectedProducts->thumbnail) }}"
-        class="w-full md:w-1/2 h-72 object-cover rounded-lg shadow">
+        class="w-full md:w-1/2 h-80 object-cover rounded-lg shadow">
 
     <div class="flex-1">
-        <h1 class="text-3xl font-bold">{{ $selectedProducts->name }}</h1>
+        <h1 class="text-3xl font-bold text-white">{{ $selectedProducts->name }}</h1>
 
-        <p class="text-gray-700 mt-3">{{ $selectedProducts->description }}</p>
+        <p class="text-gray-100 mt-3">{{ $selectedProducts->description }}</p>
 
         <p class="mt-4 text-2xl font-semibold text-green-600">
             Rp {{ number_format($selectedProducts->price, 0, ',', '.') }}

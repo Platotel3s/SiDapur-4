@@ -41,7 +41,7 @@
                     class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-600 transition duration-200 font-medium text-sm">
                     <i class="fas fa-edit"></i> Edit
                 </a>
-                <form action="#" method="post" class="flex-1">
+                <form action="{{route('hapus.customer',$user->id)}}" method="post" class="flex-1">
                     @csrf
                     <button type="submit"
                         class="w-full inline-flex items-center justify-center gap-2 px-3 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition duration-200 font-medium text-sm">
@@ -52,8 +52,6 @@
         </div>
         @endforeach
     </div>
-
-    <!-- Desktop Table View -->
     <div class="hidden md:block bg-white/20 rounded-xl shadow-lg border border-gray-100 overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full min-w-full">
@@ -95,7 +93,7 @@
                                     class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-600 transition duration-200 font-medium text-sm">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
-                                <form action="#" method="post">
+                                <form action="{{ route('hapus.customer',$user->id) }}" method="post">
                                     @csrf
                                     <button type="submit"
                                         class="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition duration-200 font-medium text-sm">
@@ -110,8 +108,6 @@
             </table>
         </div>
     </div>
-
-    <!-- Pagination for mobile and desktop -->
     @if($customer->hasPages())
     <div class="mt-6">
         {{ $customer->links() }}
