@@ -63,7 +63,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/orders/{order}/marked', 'sudahBayar')->name('mark.paid');
         Route::get('/orderan/custom/bumbu', 'indexCustom')->name('custom.bumbu');
         Route::post('/konfirmasi/{id}/custom', 'customConfirm')->name('confirm.custom');
-        Route::get('/tampilkan/{id}/custom', 'customConfirm')->name('admin.show.custom');
+        Route::get('/tampilkan/{id}/custom', 'customConfirm')->name('admin.custom.show');
     });
 
 });
