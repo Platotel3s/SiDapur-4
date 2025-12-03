@@ -23,6 +23,6 @@ class CustomOrders extends Model
 
     public function produk()
     {
-        return $this->belongsTo(Products::class);
+        return $this->belongsTo(Products::class, 'product_id');
     }
 }

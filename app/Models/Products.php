@@ -31,4 +31,9 @@ class Products extends Model
     {
         return $this->belongsTo(Categories::class);
     }
+
+    public function custome()
+    {
+        return $this->hasMany(CustomOrders::class);
+    }
 }

@@ -36,7 +36,6 @@
         @endforeach
     </div>
 </div>
-<!-- Modal Custom Bumbu -->
 <div id="customModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
     <div class="bg-white p-6 rounded-lg w-96">
         <h2 class="text-lg font-bold mb-4" id="modalProductName">Custom Bumbu</h2>

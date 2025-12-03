@@ -41,6 +41,11 @@
             <i class="fas fa-list w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
             <span>Daftar Kategori</span>
         </a>
+        <a href="{{ route('custom.bumbu')}}"
+            class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group {{request()->routeIs('custom.bumbu') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}">
+            <i class="fas fa-gear w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
+            <span>Konfirmasi custom Bumbu</span>
+        </a>
         <a href="{{ route('index.products')}}"
             class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group {{request()->routeIs('index.products') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}">
             <i class="fas fa-box w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>

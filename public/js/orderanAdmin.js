@@ -14,7 +14,7 @@ document.getElementById("confirmButton").addEventListener("click", function () {
     closeModal();
 });
 document.addEventListener("DOMContentLoaded", function () {
-    const forms = document.querySelectorAll('form[action*="mark.paid"]');
+    const forms = document.querySelectorAll('form[action*="/marked"]');
     forms.forEach((form) => {
         form.addEventListener("submit", function (e) {
             e.preventDefault();

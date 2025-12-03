@@ -72,7 +72,7 @@ class OrderController extends Controller
         ]);
         CustomOrders::create([
             'user_id' => auth()->id(),
-            'products_id' => $request->product_id,
+            'product_id' => $request->product_id,
             'request_note' => $request->request_note,
             'namaPenerima' => $request->namaPenerima,
             'nomorHp' => $request->nomorHp,
@@ -81,5 +81,56 @@ class OrderController extends Controller
         ]);
 
         return back()->with('success', 'Permintaan custom bumbu berhasil dikirim! Admin akan menghubungi Anda.');
+    }
+
+    public function indexCustom()
+    {
+        $customize = CustomOrders::paginate(5);
+
+        return view('admin.orders.custom-index', compact('customize'));
+    }
+
+    public function customConfirm($id)
+    {
+        $custom = CustomOrders::with('user', 'produk')->findOrFail($id);
+
+        return view('admin.orders.custom-show', compact('custom'));
+    }
+
+    public function approveCustom($id)
+    {
+        $custom = CustomOrders::findOrFail($id);
+        $custom->update([
+            'status' => 'reviewed',
+        ]);
+
+        return back()->with('success', 'Pesanan custom telah direview dan disetujui!');
+    }
+
+    public function rejectCustom($id)
+    {
+        $custom = CustomOrders::findOrFail($id);
+        $custom->update([
+            'status' => 'rejected',
+        ]);
+
+        return back()->with('success', 'Pesanan berhasil ditolak.');
+    }
+
+    public function deleteCustom($id)
+    {
+        $custom = CustomOrders::findOrFail($id);
+        $custom->delete();
+        return back()->with('success', 'Berhasil Hapus custom');
+    }
+
+    public function confirmCustom($id)
+    {
+        $custom = CustomOrders::findOrFail($id);
+        $custom->update([
+            'status' => 'confirmed',
+        ]);
+
+        return back()->with('success', 'Pesanan berhasil dikonfirmasi!');
     }
 }
