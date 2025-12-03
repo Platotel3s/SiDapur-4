@@ -52,7 +52,11 @@
             <span>Daftar Orderan</span>
         </a>
         @elseif(Auth::user()->role==='customer')
-
+        <a href="{{route('customer.dashboard')}}"
+            class="relative flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition {{request()->routeIs('customer.dashboard') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}"">
+            <i class=" fas fa-box-open w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
+            <span>Produk</span>
+        </a>
         <a href="{{ route('cart.index') }}"
             class="relative flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition {{request()->routeIs('cart.index') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}"">
             <i class=" fas fa-basket-shopping w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
@@ -64,6 +68,7 @@
             </span>
             @endif
         </a>
+
         <a href="{{route('customer.orders')}}"
             class="relative flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition {{request()->routeIs('customer.orders') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}"">
             <i class=" fas fa-grip-vertical w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>

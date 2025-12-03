@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomOrders;
 use App\Models\Orders;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -26,7 +28,25 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Orders::with('user', 'alamat')->orderBy('created_at', 'desc')->paginate(5);
+        $query = Orders::with('user', 'alamat')->orderBy('created_at', 'desc');
+
+        if (request('q')) {
+            $q = request('q');
+
+            $query->where(function ($qr) use ($q) {
+                $qr->whereHas('user', function ($user) use ($q) {
+                    $user->where('name', 'like', "%$q%")
+                        ->orWhere('email', 'like', "%$q%");
+                })
+                    ->orWhere('order_number', 'like', "%$q%");
+            });
+        }
+
+        if (request('payment_status')) {
+            $query->where('payment_status', request('payment_status'));
+        }
+
+        $orders = $query->paginate(5)->appends(request()->query());
 
         return view('admin.orders.index', compact('orders'));
     }
@@ -39,5 +59,27 @@ class OrderController extends Controller
         ]);
 
         return back()->with('success', 'Pembayaran Telah Dikonfirmasi');
+    }
+
+    public function customOrder(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'request_note' => 'required|string|max:2000',
+            'namaPenerima' => 'required|string',
+            'nomorHp' => 'required|string|max:13',
+            'alamat' => 'required|string|max:2000',
+        ]);
+        CustomOrders::create([
+            'user_id' => auth()->id(),
+            'products_id' => $request->product_id,
+            'request_note' => $request->request_note,
+            'namaPenerima' => $request->namaPenerima,
+            'nomorHp' => $request->nomorHp,
+            'alamat' => $request->alamat,
+            'status' => 'pending',
+        ]);
+
+        return back()->with('success', 'Permintaan custom bumbu berhasil dikirim! Admin akan menghubungi Anda.');
     }
 }

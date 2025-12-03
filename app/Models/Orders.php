@@ -35,4 +35,9 @@ class Orders extends Model
     {
         return $this->hasOne(Payments::class);
     }
+
+    public function customOrder()
+    {
+        return $this->hasMany(CustomOrders::class);
+    }
 }

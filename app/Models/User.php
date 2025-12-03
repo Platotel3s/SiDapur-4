@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Addresses::class)->where('alamatUtama', true);
     }
+
+    public function customOrder()
+    {
+        return $this->hasMany(CustomOrders::class);
+    }
 }

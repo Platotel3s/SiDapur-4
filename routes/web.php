@@ -58,9 +58,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/payments', 'adminList')->name('admin.payment.list');
         Route::post('/admin/payment/verify/{id}', 'verifyPayment')->name('admin.payment.verify');
     });
-    Route::controller(OrderController::class)->group(function(){
-        Route::get('admin/orders','index')->name('admin.orders.index');
-        Route::post('/admin/orders/{order}/marked','sudahBayar')->name('mark.paid');
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('admin/orders', 'index')->name('admin.orders.index');
+        Route::post('/admin/orders/{order}/marked', 'sudahBayar')->name('mark.paid');
+
     });
 
 });
@@ -92,7 +93,8 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
     Route::controller(OrderController::class)->group(function () {
         Route::get('/order/list', 'orderList')->name('customer.orders');
         Route::get('/order/detail/{id}', 'orderDetail')->name('customer.order.detail');
-        Route::get('/order/success', 'orderSuccess');
+        Route::get('/order/success', 'orderSuccess')->name('orderan.success');
+        Route::post('/custom/order', 'customOrder')->name('custom.order');
     });
     Route::controller(PaymentController::class)->group(function () {
         Route::get('/order/payment/{id}', 'showPaymentForm')->name('customer.payment.form');
