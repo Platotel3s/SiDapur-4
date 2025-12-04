@@ -25,7 +25,6 @@
                         </span>
                         <h3 class="text-lg font-semibold text-gray-100">{{$user->name}}</h3>
                     </div>
-                    <p class="text-sm text-gray-200">{{$user->email}}</p>
                 </div>
             </div>
 
@@ -55,7 +54,6 @@
                     <tr>
                         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-100">No</th>
                         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-100">Nama</th>
-                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-100">Email</th>
                         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-100">No. Handphone</th>
                         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-100">Aksi</th>
                     </tr>
@@ -71,11 +69,6 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm font-medium text-gray-100">
                                 {{$user->name}}
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm font-medium text-gray-100">
-                                {{$user->email}}
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
