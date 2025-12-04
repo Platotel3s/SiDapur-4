@@ -33,25 +33,6 @@
                     @enderror
                 </div>
                 <div class="space-y-2">
-                    <label class="block text-gray-700 font-semibold mb-2">
-                        Slug <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" name="slug" value="{{ old('slug', $pilihProduk->slug) }}"
-                        placeholder="Contoh: nasi-goreng-special"
-                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition duration-200"
-                        required>
-                    @error('slug')
-                    <p class="text-red-600 text-sm mt-1 flex items-center">
-                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        {{ $message }}
-                    </p>
-                    @enderror
-                </div>
-                <div class="space-y-2">
                     <label class="block text-gray-700 font-semibold mb-2 flex items-center">
                         <svg class="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -79,10 +79,10 @@
             <i class=" fas fa-grip-vertical w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
             <span>Pesanan</span>
         </a>
-        <a href="{{route('customerList')}}"
-            class="relative flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition {{request()->routeIs('customerList') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}"">
-            <i class=" fas fa-cash-register w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
-            <span>List Pembayaran customer</span>
+        <a href="{{route('alamat.index')}}"
+            class="relative flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition {{request()->routeIs('alamat.index') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}"">
+            <i class=" fas fa-home w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
+            <span>Alamat</span>
         </a>
         @endif
         @endauth

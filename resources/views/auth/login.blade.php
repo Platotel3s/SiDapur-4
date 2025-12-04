@@ -33,10 +33,10 @@
             @csrf
 
             <div>
-                <label for="login" class="block text-gray-100 font-medium mb-1">Email / Nomor Telepon</label>
-                <input type="text" name="login" id="login"
+                <label for="login" class="block text-gray-100 font-medium mb-1">Nomor Telepon</label>
+                <input type="text" name="phone" id="phone"
                     class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 focus:outline-none transition text-gray-100"
-                    value="{{ old('login') }}" required placeholder="contoh@email.com atau 081234567890">
+                    value="{{ old('login') }}" required placeholder="081234567890">
                 @error('login')
                 <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
                 @enderror

@@ -27,7 +27,6 @@ class ProductController extends Controller
         $request->validate([
             'category_id' => 'nullable',
             'name' => 'nullable',
-            'slug' => 'nullable',
             'description' => 'nullable',
             'price' => 'nullable',
             'stock' => 'nullable',
@@ -67,7 +66,6 @@ class ProductController extends Controller
         $request->validate([
             'category_id' => 'nullable',
             'name' => 'nullable',
-            'slug' => 'nullable',
             'description' => 'nullable',
             'price' => 'nullable',
             'stock' => 'nullable',
@@ -84,7 +82,6 @@ class ProductController extends Controller
         $pilihProduk->update([
             'category_id' => $request->category_id,
             'name' => $request->name,
-            'slug' => $request->description,
             'price' => $request->price,
             'stock' => $request->stock,
             'unit' => $request->unit,

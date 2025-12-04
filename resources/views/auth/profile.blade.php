@@ -61,32 +61,6 @@
             </button>
         </form>
     </div>
-    <div class="bg-black/40 p-5 rounded-xl shadow-xl border border-white/10">
-        <h3 class="text-xl font-semibold mb-4">Two-Factor Authentication</h3>
-
-        <p class="text-gray-300 text-sm mb-4">
-            Two-Factor Authentication menambah keamanan akun dengan kode verifikasi tambahan.
-        </p>
-
-        <div class="flex items-center justify-between">
-            <p class="text-lg font-medium">Status</p>
-
-            <span class="px-3 py-1 bg-yellow-500 text-black rounded text-sm">
-                Belum Aktif
-            </span>
-        </div>
-
-        <button class="w-full mt-4 bg-blue-600 hover:bg-blue-700 py-2 rounded font-semibold transition">
-            Aktifkan 2FA
-        </button>
-    </div>
-    <div class="bg-black/40 p-5 rounded-xl shadow-xl border border-white/10 mt-6">
-        <a href="{{ route('alamat.index') }}"
-            class="items-center px-4 py-3 rounded-lg hover:bg-blue-700 transition duration-200 group w-full flex flex-row justify-center">
-            <i class="fas fa-home w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
-            <span class="text-xl">Daftar Alamat</span>
-        </a>
-    </div>
 </div>
 
 @endsection

@@ -23,11 +23,9 @@ class CategoriesController extends Controller
     {
         $request->validate([
             'name' => 'string',
-            'slug' => 'string',
         ]);
         Categories::create([
             'name' => $request->name,
-            'slug' => $request->slug,
         ]);
 
         return redirect()->route('create.categories')->with('success', 'Berhasil tambah kategori');
@@ -44,10 +42,11 @@ class CategoriesController extends Controller
     {
         $request->validate([
             'name' => 'nullable',
-            'slug' => 'nullable',
         ]);
         $pilihCategory = Categories::findOrFail($id);
-        $pilihCategory->update();
+        $pilihCategory->update([
+            'name'=>$request->name,
+        ]);
 
         return redirect()->route('index.categories')->with('success', 'Berhasil memperbarui');
     }

@@ -42,15 +42,6 @@
                 @enderror
             </div>
             <div>
-                <label for="email" class="block text-white font-medium mb-1">Email</label>
-                <input type="email" name="email" id="email" placeholder="contoh@email.com"
-                    class="w-full bg-white/5 border border-gray-300/30 rounded-lg p-3 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition text-white placeholder-gray-300"
-                    value="{{ old('email') }}" required>
-                @error('email')
-                <span class="text-red-300 text-sm mt-1">{{ $message }}</span>
-                @enderror
-            </div>
-            <div>
                 <label for="phone" class="block text-white font-medium mb-1">Nomor Handphone</label>
                 <input type="tel" name="phone" id="phone" placeholder="08xxxxxxxxxx"
                     class="w-full bg-white/5 border border-gray-300/30 rounded-lg p-3 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition text-white placeholder-gray-300"
@@ -67,7 +58,7 @@
                         class="w-full bg-white/5 border border-gray-300/30 rounded-lg p-3 pr-10 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition text-white placeholder-gray-300"
                         required>
                     <button type="button" onclick="togglePassword('password', 'togglePasswordIcon')"
-                        class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-300 hover:text-white">
+                        class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-900 hover:text-black">
                         <svg id="togglePasswordIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                             viewBox="0 0 20 20" fill="currentColor">
                             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -91,7 +82,7 @@
                         class="w-full bg-white/5 border border-gray-300/30 rounded-lg p-3 pr-10 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition text-white placeholder-gray-300"
                         required placeholder="Ketik ulang password Anda">
                     <button type="button" onclick="togglePassword('password_confirmation', 'togglePasswordConfirmIcon')"
-                        class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-300 hover:text-white">
+                        class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-900 hover:text-black">
                         <svg id="togglePasswordConfirmIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                             viewBox="0 0 20 20" fill="currentColor">
                             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -104,18 +95,6 @@
                 @error('password_confirmation')
                 <span class="text-red-300 text-sm mt-1">{{ $message }}</span>
                 @enderror
-            </div>
-            <div class="flex items-start pt-2">
-                <input type="checkbox" id="terms" name="terms" value="1"
-                    class="h-4 w-4 text-amber-500 border-gray-300 rounded mt-1 focus:ring-amber-500">
-                <label for="terms" class="ml-2 text-gray-100 text-sm">
-                    Saya menyetujui
-                    <a href="#" class="text-amber-300 hover:text-amber-200 hover:underline transition">Syarat &
-                        Ketentuan</a>
-                    dan
-                    <a href="#" class="text-amber-300 hover:text-amber-200 hover:underline transition">Kebijakan
-                        Privasi</a>
-                </label>
             </div>
             @error('terms')
             <span class="text-red-300 text-sm block mt-1">{{ $message }}</span>

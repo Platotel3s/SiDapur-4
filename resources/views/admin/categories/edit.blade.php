@@ -29,24 +29,6 @@
             </p>
             @enderror
         </div>
-        <div class="space-y-2">
-            <label class="block text-gray-700 font-semibold mb-2">
-                Slug <span class="text-red-500">*</span>
-            </label>
-            <input type="text" name="slug" value="{{ old('slug',$selectedCategory->slug) }}"
-                placeholder="Contoh: makanan, elektronik, fashion"
-                class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition duration-200">
-            @error('slug')
-            <p class="text-red-600 text-sm mt-1 flex items-center">
-                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                        clip-rule="evenodd" />
-                </svg>
-                {{ $message }}
-            </p>
-            @enderror
-        </div>
         <div class="flex gap-4 pt-4">
             <button type="submit"
                 class="flex-1 bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 transform hover:-translate-y-0.5 flex items-center justify-center">

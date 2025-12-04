@@ -21,32 +21,24 @@
             Tambah Kategori
         </a>
     </div>
-    <div class="bg-white/20 rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+    <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
         <div class="hidden md:block overflow-x-auto">
             <table class="w-full min-w-full">
-                <thead class="bg-gray-50 border-b border-gray-200">
+                <thead class="bg-gray-100 border-b border-gray-200">
                     <tr>
                         <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                             Nama Kategori
-                        </th>
-                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            Slug
                         </th>
                         <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                             Aksi
                         </th>
                     </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
+                <tbody class="bg-white/10 divide-y divide-gray-200">
                     @forelse ($categories as $item)
                     <tr class="hover:bg-gray-50 transition duration-150">
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm font-medium text-gray-900">{{ $item->name }}</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full inline-block">
-                                {{ $item->slug }}
-                            </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center gap-3">

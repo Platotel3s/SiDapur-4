@@ -18,18 +18,15 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
             'phone' => 'required|string|max:13|unique:users,phone',
         ],
             [
-                'email.unique'=>'Email ini sudah digunakan',
-                'phone.unique'=>'Nomor ini sudah digunakan',
+                'phone.unique' => 'Nomor ini sudah digunakan',
             ]
         );
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
         ]);
@@ -45,12 +42,11 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'login' => 'required|string',
+        $credential = $request->validate([
+            'phone' => 'required|string',
             'password' => 'required|string',
         ]);
-        $fieldType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
-        if (Auth::attempt([$fieldType => $request->login, 'password' => $request->password])) {
+        if (Auth::attempt($credential)) {
             $request->session()->regenerate();
             if (Auth::user()->role === 'admin') {
                 return redirect('/admin/dashboard');
@@ -59,7 +55,7 @@ class AuthController extends Controller
             }
 
             return back()->withErrors([
-                'login' => 'Email / Telepon belum terdaftar',
+                'phone' => 'Telepon belum terdaftar',
             ]);
         }
     }

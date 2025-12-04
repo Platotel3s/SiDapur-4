@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('title', 'Custom Bumbu Orders')
 @section('content')
-<div class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen bg-white/10 border rounded-2xl border-yellow-500 py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
 
         <!-- Header -->
         <div class="mb-8">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Custom Bumbu Orders</h1>
-                    <p class="text-gray-600 mt-1">Kelola dan pantau pesanan bumbu custom dari customer</p>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-100">Custom Bumbu Orders</h1>
+                    <p class="text-gray-100 mt-1">Kelola dan pantau pesanan bumbu custom dari customer</p>
                 </div>
 
                 <!-- Stats -->
@@ -24,10 +24,10 @@
 
         <!-- Stats Cards -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+            <div class="bg-white/10 rounded-xl shadow-sm border border-yellow-500 p-4">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-gray-600 text-sm">Pending</p>
+                        <p class="text-gray-100 text-sm">Pending</p>
                         <p class="text-2xl font-bold text-yellow-600 mt-1">
                             {{ $customize->where('status', 'pending')->count() }}
                         </p>
@@ -38,10 +38,10 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+            <div class="bg-white/10 rounded-xl shadow-sm border border-yellow-500 p-4">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-gray-600 text-sm">Processing</p>
+                        <p class="text-gray-100 text-sm">Processing</p>
                         <p class="text-2xl font-bold text-blue-600 mt-1">
                             {{ $customize->where('status', 'processing')->count() }}
                         </p>
@@ -52,10 +52,10 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+            <div class="bg-white/10 rounded-xl shadow-sm border border-yellow-500 p-4">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-gray-600 text-sm">Completed</p>
+                        <p class="text-gray-100 text-sm">Completed</p>
                         <p class="text-2xl font-bold text-green-600 mt-1">
                             {{ $customize->where('status', 'completed')->count() }}
                         </p>
@@ -66,10 +66,10 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+            <div class="bg-white/10 rounded-xl shadow-sm border border-yellow-500 p-4">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-gray-600 text-sm">Cancelled</p>
+                        <p class="text-gray-100 text-sm">Cancelled</p>
                         <p class="text-2xl font-bold text-red-600 mt-1">
                             {{ $customize->where('status', 'cancelled')->count() }}
                         </p>
@@ -82,17 +82,17 @@
         </div>
 
         <!-- Search & Filters -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
+        <div class="bg-white/10 rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
             <div class="flex flex-col md:flex-row md:items-center gap-4">
                 <div class="flex-1">
                     <div class="relative">
                         <input type="text" placeholder="Cari produk / customer..."
-                            class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                            class="w-full pl-10 pr-4 py-2.5 border border-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-white outline-none">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-100"></i>
                     </div>
                 </div>
                 <div class="flex gap-2">
-                    <select class="border border-gray-300 rounded-lg px-3 py-2.5 text-gray-700">
+                    <select class="border border-gray-300 rounded-lg px-3 py-2.5 text-gray-100">
                         <option value="">Semua Status</option>
                         <option value="pending">Pending</option>
                         <option value="processing">Processing</option>
@@ -100,7 +100,7 @@
                         <option value="cancelled">Cancelled</option>
                     </select>
                     <button
-                        class="px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">
+                        class="px-4 py-2.5 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-200">
                         <i class="fas fa-filter"></i>
                     </button>
                 </div>
@@ -110,7 +110,7 @@
         <!-- Mobile View -->
         <div class="lg:hidden space-y-4">
             @forelse($customize as $c)
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="bg-white/10 rounded-xl shadow-sm border border-yellow-500 overflow-hidden">
                 <div class="p-4 border-b border-gray-100">
                     <div class="flex justify-between items-start">
                         <div>
