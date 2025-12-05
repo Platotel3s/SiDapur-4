@@ -42,7 +42,6 @@ class ProductController extends Controller
         Products::create([
             'category_id' => $request->category_id,
             'name' => $request->name,
-            'slug' => $request->slug,
             'description' => $request->description,
             'price' => $request->price,
             'stock' => $request->stock,

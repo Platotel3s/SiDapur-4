@@ -13,19 +13,15 @@
                 Rp {{ number_format($product->price, 0, ',', '.') }}
             </p>
             <div class="mt-4 flex justify-between">
-
-                <div class="mt-4 flex justify-between items-center">
-                    <a href="{{ route('customer.products.show', $product->id) }}"
-                        class="text-blue-600 hover:underline text-sm">Detail</a>
-
+                <div class="mt-4 flex justify-between gap-1 items-center">
                     <button onclick="openCustomModal({{ $product->id }}, '{{ $product->name }}')"
-                        class="bg-yellow-500 hover:bg-yellow-600 text-white text-sm px-3 py-1 rounded">
+                        class="bg-yellow-500 hover:bg-yellow-600 text-black text-sm px-3 py-1 rounded">
                         Custom Bumbu
                     </button>
 
                     <form action="{{ route('cart.add', $product->id) }}" method="POST">
                         @csrf
-                        <button class="bg-green-600 hover:bg-green-700 text-white text-sm px-3 py-1 rounded">
+                        <button class="bg-green-600 hover:bg-green-700 text-black text-sm px-3 py-1 rounded">
                             + Keranjang
                         </button>
                     </form>

@@ -5,34 +5,6 @@
 <div class="min-h-screen py-6 sm:py-8 px-4">
     <div class="max-w-6xl mx-auto">
         <div class="mb-8 sm:mb-10">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-100">Riwayat Pesanan</h1>
-                    <p class="text-gray-300 mt-1">Kelola dan lacak semua pesanan Anda</p>
-                </div>
-
-                <div class="flex items-center gap-3">
-                    <div class="relative">
-                        <input type="text" placeholder="Cari pesanan..."
-                            class="pl-10 pr-4 py-2 border text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 w-full sm:w-64">
-                        <svg class="absolute left-3 top-2.5 w-5 h-5 text-gray-100" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </div>
-
-                    <select
-                        class="border border-gray-300 rounded-lg px-3 py-2 text-gray-100 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
-                        <option value="">Semua Status</option>
-                        <option value="pending">Pending</option>
-                        <option value="processing">Diproses</option>
-                        <option value="shipped">Dikirim</option>
-                        <option value="delivered">Selesai</option>
-                        <option value="cancelled">Dibatalkan</option>
-                    </select>
-                </div>
-            </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
                 <div class="bg-white/10 rounded-xl p-4 shadow-sm border border-gray-200">
                     <div class="flex items-center justify-between">
@@ -53,43 +25,9 @@
                 <div class="bg-white/10 rounded-xl p-4 shadow-sm border border-gray-200">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm text-gray-100">Dalam Proses</p>
-                            <p class="text-2xl font-bold text-amber-600 mt-1">
-                                {{ $orders->where('status', 'processing')->count() }}
-                            </p>
-                        </div>
-                        <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white/10 rounded-xl p-4 shadow-sm border border-gray-200">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-sm text-gray-100">Dikirim</p>
-                            <p class="text-2xl font-bold text-purple-600 mt-1">
-                                {{ $orders->where('status', 'shipped')->count() }}
-                            </p>
-                        </div>
-                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white/10 rounded-xl p-4 shadow-sm border border-gray-200">
-                    <div class="flex items-center justify-between">
-                        <div>
                             <p class="text-sm text-gray-100">Selesai</p>
                             <p class="text-2xl font-bold text-green-600 mt-1">
-                                {{ $orders->where('status', 'delivered')->count() }}
+                                {{ $orders->where('status', 'paid')->count() }}
                             </p>
                         </div>
                         <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
@@ -319,35 +257,6 @@
             </div>
         </div>
         @endif
-        <div class="mt-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-200">
-            <div class="flex items-start gap-4">
-                <div class="flex-shrink-0">
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                            </path>
-                        </svg>
-                    </div>
-                </div>
-                <div class="flex-1">
-                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Butuh Bantuan?</h4>
-                    <p class="text-gray-600 mb-3">Ada masalah dengan pesanan Anda? Tim kami siap membantu!</p>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="https://wa.me/6281234567890" target="_blank"
-                            class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition duration-200">
-                            <i class="fab fa-whatsapp"></i>
-                            WhatsApp Support
-                        </a>
-                        <a href="mailto:support@sidapur.com"
-                            class="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-lg transition duration-200">
-                            <i class="fas fa-envelope"></i>
-                            Email Support
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
