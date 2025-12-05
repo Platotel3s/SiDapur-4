@@ -5,75 +5,98 @@ namespace App\Http\Controllers;
 use App\Models\Orders;
 use App\Models\Payments;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PaymentController extends Controller
 {
-    public function showPaymentForm($id)
+    public function index()
     {
-        $order = Orders::where('id', $id)
-            ->where('user_id', Auth::id())
-            ->firstOrFail();
+        $payments = Payments::with('order')->latest()->paginate(10);
 
-        if ($order->payment_status === 'paid') {
-            return redirect()->back()->with('error', 'Pesanan sudah dibayar.');
+        return view('payments.index', compact('payments'));
+    }
+
+    public function create()
+    {
+        $orders = Orders::all();
+
+        return view('payments.create', compact('orders'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required|exists:orders,id',
+            'method' => 'required|numeric|min:0',
+            'status' => 'required|string|max:50',
+            'bukti' => 'nullable|image|max:2048',
+        ]);
+        $buktiPath = null;
+        if ($request->hasFile('bukti')) {
+            $buktiPath = $request->file('bukti')->store('bukti_pembayaran', 'public');
         }
 
-        return view('customer.payment_form', compact('order'));
-    }
-    public function storePayment(Request $request, $id)
-    {
-        $order = Orders::where('id', $id)
-            ->where('user_id', Auth::id())
-            ->firstOrFail();
-
-        $request->validate([
-            'payment_proof' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'provider' => 'required|string',
-        ]);
-        $proofPath = $request->file('payment_proof')->store('payment-proof', 'public');
-
         Payments::create([
-            'order_id' => $order->id,
-            'payment_proof' => $proofPath,
-            'provider' => $request->provider,
-            'paid_at' => now(),
-            'amount' => $order->total_price,
-        ]);
-        $order->update([
-            'payment_status' => 'paid',
-            'status' => 'processing',
+            'order_id' => $request->order_id,
+            'method' => $request->amount,
+            'status' => $request->method,
+            'bukti' => $request->$buktiPath,
         ]);
 
-        return redirect()->route('customer.orders')->with('success', 'Pembayaran berhasil diupload.');
+        return redirect()->route('payments.index')->with('success', 'Pembayaran berhasil ditambahkan.');
     }
-    public function adminList()
+
+    public function show($id)
     {
-        $payments = Payments::with('order.user')->latest()->get();
+        $payment = Payments::with('order')->findOrFail($id);
 
-        return view('admin.payments.index', compact('payments'));
+        return view('payments.show', compact('payment'));
     }
-    public function verifyPayment($id)
+
+    public function edit($id)
+    {
+        $payment = Payments::findOrFail($id);
+        $orders = Orders::all();
+
+        return view('payments.edit', compact('payment', 'orders'));
+    }
+
+    public function update(Request $request, $id)
     {
         $payment = Payments::findOrFail($id);
 
-        $payment->order->update([
-            'status' => 'processing',
-            'payment_status' => 'paid',
+        $request->validate([
+            'order_id' => 'required|exists:orders,id',
+            'method' => 'required|numeric|min:0',
+            'status' => 'required|string|max:50',
+            'bukti' => 'nullable|image|max:2048',
+        ]);
+        if ($request->hasFile('bukti')) {
+            if ($payment->bukti && Storage::disk('public')->exists($payment->bukti)) {
+                Storage::disk('public')->delete($payment->bukti);
+            }
+            $payment->bukti = $request->file('bukti')->store('bukti_pembayaran', 'public');
+        }
+        $payment->update([
+            'order_id' => $request->order_id,
+            'method' => $request->method,
+            'status' => $request->status,
+            'bukti' => $request->bukti,
         ]);
 
-        return back()->with('success', 'Pembayaran berhasil diverifikasi.');
+        return redirect()->route('payments.index')->with('success', 'Pembayaran berhasil diperbarui.');
     }
 
-    public function customerList()
+    public function destroy($id)
     {
-        $payments = Payments::with('order')
-            ->whereHas('order', function ($q) {
-                $q->where('user_id', auth()->id());
-            })
-            ->latest()
-            ->get();
+        $payment = Payments::findOrFail($id);
+        if ($payment->bukti && Storage::disk('public')->exists($payment->bukti)) {
+            Storage::disk('public')->delete($payment->bukti);
+        }
 
-        return view('customer.payments.index', compact('payments'));
+        $payment->delete();
+
+        return redirect()->route('payments.index')
+            ->with('success', 'Pembayaran berhasil dihapus.');
     }
 }

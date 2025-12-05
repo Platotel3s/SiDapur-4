@@ -8,12 +8,13 @@ class Payments extends Model
 {
     protected $fillable = [
         'order_id',
-        'payment_proof',
-        'provider',
-        'paid_at',
-        'amount',
+        'method',
+        'status',
+        'bukti',
     ];
-    public function order(){
+
+    public function order()
+    {
         return $this->belongsTo(Orders::class);
     }
 }
