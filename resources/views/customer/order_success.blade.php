@@ -113,11 +113,6 @@
                     <div>
                         <div class="flex items-center gap-3 mb-2">
                             <h2 class="text-2xl font-bold text-white">Pesanan #{{ $order->order_number }}</h2>
-                            <span
-                                class="px-3 py-1 rounded-full text-sm font-semibold
-                                {{ $order->payment_status == 'paid' ? 'bg-green-900/50 text-green-300' : 'bg-red-900/50 text-red-300' }}">
-                                {{ strtoupper($order->payment_status) }}
-                            </span>
                         </div>
                         <p class="text-gray-400">
                             Dipesan pada {{ $order->created_at->translatedFormat('l, d F Y, H:i') }}
@@ -182,13 +177,6 @@
                             <div>
                                 <p class="text-gray-400 mb-1">Metode Pembayaran</p>
                                 <p class="text-white font-medium">{{ strtoupper($order->payment_method) }}</p>
-                            </div>
-                            <div>
-                                <p class="text-gray-400 mb-1">Status Pembayaran</p>
-                                <p
-                                    class="font-semibold {{ $order->payment_status == 'paid' ? 'text-green-400' : 'text-red-400' }}">
-                                    {{ strtoupper($order->payment_status) }}
-                                </p>
                             </div>
                         </div>
                     </div>

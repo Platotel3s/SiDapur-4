@@ -13,22 +13,20 @@ class PaymentController extends Controller
     {
         $payments = Payments::with('order')->latest()->paginate(10);
 
-        return view('payments.index', compact('payments'));
+        return view('customer.payments.index', compact('payments'));
     }
 
     public function create()
     {
         $orders = Orders::all();
 
-        return view('payments.create', compact('orders'));
+        return view('customer.payments.create', compact('orders'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'order_id' => 'required|exists:orders,id',
-            'method' => 'required|numeric|min:0',
-            'status' => 'required|string|max:50',
             'bukti' => 'nullable|image|max:2048',
         ]);
         $buktiPath = null;
@@ -38,19 +36,17 @@ class PaymentController extends Controller
 
         Payments::create([
             'order_id' => $request->order_id,
-            'method' => $request->amount,
-            'status' => $request->method,
-            'bukti' => $request->$buktiPath,
+            'bukti' => $buktiPath,
         ]);
 
-        return redirect()->route('payments.index')->with('success', 'Pembayaran berhasil ditambahkan.');
+        return redirect()->route('customer.payments.index')->with('success', 'Pembayaran berhasil ditambahkan.');
     }
 
     public function show($id)
     {
         $payment = Payments::with('order')->findOrFail($id);
 
-        return view('payments.show', compact('payment'));
+        return view('customer.payments.show', compact('payment'));
     }
 
     public function edit($id)
@@ -58,7 +54,7 @@ class PaymentController extends Controller
         $payment = Payments::findOrFail($id);
         $orders = Orders::all();
 
-        return view('payments.edit', compact('payment', 'orders'));
+        return view('customer.payments.edit', compact('payment', 'orders'));
     }
 
     public function update(Request $request, $id)
@@ -67,8 +63,6 @@ class PaymentController extends Controller
 
         $request->validate([
             'order_id' => 'required|exists:orders,id',
-            'method' => 'required|numeric|min:0',
-            'status' => 'required|string|max:50',
             'bukti' => 'nullable|image|max:2048',
         ]);
         if ($request->hasFile('bukti')) {
@@ -79,12 +73,10 @@ class PaymentController extends Controller
         }
         $payment->update([
             'order_id' => $request->order_id,
-            'method' => $request->method,
-            'status' => $request->status,
             'bukti' => $request->bukti,
         ]);
 
-        return redirect()->route('payments.index')->with('success', 'Pembayaran berhasil diperbarui.');
+        return redirect()->route('customer.payments.index')->with('success', 'Pembayaran berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -96,7 +88,6 @@ class PaymentController extends Controller
 
         $payment->delete();
 
-        return redirect()->route('payments.index')
-            ->with('success', 'Pembayaran berhasil dihapus.');
+        return redirect()->route('customer.payments.index')->with('success', 'Pembayaran berhasil dihapus.');
     }
 }

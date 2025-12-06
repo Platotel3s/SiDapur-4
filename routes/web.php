@@ -99,9 +99,7 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
         Route::post('/custom/order', 'customOrder')->name('custom.order');
     });
     Route::controller(PaymentController::class)->group(function () {
-        Route::get('/order/payment/{id}', 'showPaymentForm')->name('customer.payment.form');
-        Route::post('/order/payment/{id}', 'storePayment')->name('customer.payment.store');
-        Route::get('/customer/payments', 'customerList')->name('customerList');
+        Route::get('/index/payment', 'index')->name('index.payment');
+        Route::get('/create/payment', 'create')->name('create.payment');
     });
-
 });

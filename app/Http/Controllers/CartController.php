@@ -64,7 +64,7 @@ class CartController extends Controller
         return back()->with('success', 'Item Berhasil dihapus');
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
         $cart = Keranjang::where('user_id', auth()->id())->first();
 
@@ -79,14 +79,16 @@ class CartController extends Controller
         if (! $defaultAddress) {
             return back()->with('error', 'Anda belum memiliki alamat utama');
         }
+        $request->validate([
+            'payment_method' => 'required|in:cod,transfer',
+        ]);
         $order = Orders::create([
             'user_id' => auth()->id(),
             'address_id' => $defaultAddress->id,
             'order_number' => $orderNumber,
             'total_price' => $totalPrice,
             'status' => 'pending',
-            'payment_method' => 'cod',
-            'payment_status' => 'unpaid',
+            'payment_method' => $request->payment_method,
         ]);
         foreach ($cart->item as $item) {
             OrderItems::create([
@@ -99,8 +101,7 @@ class CartController extends Controller
         }
         $cart->item()->delete();
 
-        return redirect()->route('order.success', $order->id)
-            ->with('success', 'Checkout berhasil!');
+        return redirect()->route('order.success', $order->id)->with('success', 'Checkout berhasil!');
     }
 
     public function orderSuccess($id)

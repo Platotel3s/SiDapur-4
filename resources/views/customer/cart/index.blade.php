@@ -200,6 +200,10 @@
         <div class="space-y-4">
             <form action="{{ route('checkout') }}" method="POST">
                 @csrf
+                <label for="pay_cod">COD</label>
+                <input type="radio" name="payment_method" id="pay_cod" value="cod" checked>
+                <label for="pay_transfer">Transfer</label>
+                <input type="radio" name="payment_method" id="pay_transfer" value="transfer">
                 <button type="submit"
                     class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
                     <i class="fas fa-shopping-bag"></i>
