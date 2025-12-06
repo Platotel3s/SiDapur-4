@@ -54,7 +54,6 @@ class OrderController extends Controller
     public function sudahBayar(Orders $order)
     {
         $order->update([
-            'payment_status' => 'paid',
             'status' => 'paid',
         ]);
 

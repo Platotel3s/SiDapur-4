@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.querySelector("select").addEventListener("change", function (e) {
     const status = e.target.value;
     if (status) {
-        window.location.href = `?payment_status=${status}`;
+        window.location.href = `?status=${status}`;
     } else {
         window.location.href = window.location.pathname;
     }

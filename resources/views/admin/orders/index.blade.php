@@ -4,8 +4,6 @@
 
 <div class="min-h-screen bg-white/10 py-6 px-4 sm:px-6 lg:px-8 border border-yellow-500 rounded-2xl">
     <div class="max-w-7xl mx-auto">
-
-        <!-- Header -->
         <div class="mb-8">
             <h1 class="text-2xl sm:text-3xl font-bold text-white">Konfirmasi Pembayaran Customer</h1>
             <p class="text-gray-100 mt-2">Kelola dan verifikasi status pembayaran pesanan</p>
@@ -32,8 +30,6 @@
             </div>
             @endif
         </div>
-
-        <!-- Stats Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
                 <div class="flex items-center justify-between">
@@ -56,7 +52,7 @@
                     <div>
                         <p class="text-gray-600 text-sm">Belum Bayar</p>
                         <p class="text-2xl font-bold text-yellow-600 mt-1">
-                            {{ $orders->where('payment_status', 'unpaid')->count() }}
+                            {{ $orders->where('status', 'Pending')->count() }}
                         </p>
                     </div>
                     <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
@@ -73,7 +69,7 @@
                     <div>
                         <p class="text-gray-600 text-sm">Sudah Dibayar</p>
                         <p class="text-2xl font-bold text-green-600 mt-1">
-                            {{ $orders->where('payment_status', 'paid')->count() }}
+                            {{ $orders->where('status', 'Paid')->count() }}
                         </p>
                     </div>
                     <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
@@ -90,7 +86,7 @@
                     <div>
                         <p class="text-gray-600 text-sm">Total Pendapatan</p>
                         <p class="text-2xl font-bold text-purple-600 mt-1">
-                            Rp {{ number_format($orders->where('payment_status', 'paid')->sum('total_price'), 0, ',',
+                            Rp {{ number_format($orders->where('status', 'Paid')->sum('total_price'), 0, ',',
                             '.') }}
                         </p>
                     </div>
@@ -104,8 +100,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Filters -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div class="flex-1">
@@ -156,8 +150,8 @@
                                 <span class="font-semibold text-gray-900">#{{ $order->order_number }}</span>
                                 <span
                                     class="px-2 py-1 rounded-full text-xs font-medium
-                                    {{ $order->payment_status == 'unpaid' ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800' }}">
-                                    {{ $order->payment_status == 'unpaid' ? 'UNPAID' : 'PAID' }}
+                                    {{ $order->status == 'Pending' ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800' }}">
+                                    {{ $order->status == 'Pending' ? 'Pending' : 'Paid' }}
                                 </span>
                             </div>
                             <p class="text-sm text-gray-500">{{ $order->created_at->format('d M Y, H:i') }}</p>
@@ -195,7 +189,7 @@
 
                 <!-- Action -->
                 <div class="px-4 pb-4 pt-3 border-t border-gray-100">
-                    @if($order->payment_status == 'unpaid')
+                    @if($order->status == 'Pending')
                     <form action="{{ route('mark.paid', $order->id) }}" method="POST">
                         @csrf
                         <button type="submit"
@@ -274,11 +268,11 @@
                             </td>
                             <td class="py-4 px-6">
                                 <span class="px-3 py-1 rounded-full text-sm font-medium
-                                    {{ $order->status == 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                                       ($order->status == 'processing' ? 'bg-blue-100 text-blue-800' :
-                                       ($order->status == 'shipped' ? 'bg-purple-100 text-purple-800' :
-                                       ($order->status == 'delivered' ? 'bg-green-100 text-green-800' :
-                                       'bg-gray-100 text-gray-800'))) }}">
+                                    {{
+                                    $order->status == 'Pending' ? 'bg-yellow-100 text-yellow-800' :
+                                       ($order->status == 'canceled' ? 'bg-purple-100 text-red-800' :
+                                       ($order->status == 'Paid' ? 'bg-green-100 text-green-800' :
+                                       'bg-gray-100 text-gray-800')) }}">
                                     {{ ucfirst($order->status) }}
                                 </span>
                             </td>
@@ -288,14 +282,14 @@
                                 </span>
                             </td>
                             <td class="py-4 px-6">
-                                @if($order->payment_status == 'unpaid')
+                                @if($order->status == 'Pending')
                                 <span
                                     class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium flex items-center gap-1 w-fit">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
-                                    UNPAID
+                                    Belum Dibayar
                                 </span>
                                 @else
                                 <span
@@ -304,12 +298,12 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
-                                    PAID
+                                    Sudah Dibayar
                                 </span>
                                 @endif
                             </td>
                             <td class="py-4 px-6">
-                                @if($order->payment_status == 'unpaid')
+                                @if($order->status == 'Pending')
                                 <form action="{{ route('mark.paid', $order->id) }}" method="POST">
                                     @csrf
                                     <button type="submit"
@@ -417,8 +411,10 @@
 </div>
 
 <!-- Confirmation Modal -->
-<div id="confirmModal" class="hidden fixed inset-0 bg-transparent bg-opacity-50 z-50 flex items-center justify-center p-4">
-    <div class="bg-gradient-to-br from-black to-red-500 border border-yellow-500 rounded-xl p-6 w-full max-w-md shadow-lg">
+<div id="confirmModal"
+    class="hidden fixed inset-0 bg-transparent bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div
+        class="bg-gradient-to-br from-black to-red-500 border border-yellow-500 rounded-xl p-6 w-full max-w-md shadow-lg">
         <h3 class="text-lg font-bold mb-4 text-white">Konfirmasi Pembayaran</h3>
         <p class="text-gray-100 mb-6">Apakah Anda yakin ingin menandai pembayaran ini sebagai LUNAS?</p>
         <div class="flex justify-end space-x-3">

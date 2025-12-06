@@ -91,6 +91,10 @@ class CartController extends Controller
             'payment_method' => $request->payment_method,
         ]);
         foreach ($cart->item as $item) {
+            if ($item->produk->stock<$item->kuantitas) {
+                return back()->with('error','Stok Produk'.$item->produk->name.'Tidak Cukup');
+            }
+            $item->produk->decrement('stock',$item->kuantitas);
             OrderItems::create([
                 'order_id' => $order->id,
                 'produk_id' => $item->id_produk,
