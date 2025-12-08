@@ -79,7 +79,7 @@ class OrderController extends Controller
             'status' => 'pending',
         ]);
 
-        return redirect()->route('customer.dashboard')->with('success', 'Permintaan custom bumbu berhasil dikirim! Admin akan menghubungi Anda.');
+        return back()->with('success', 'Permintaan custom bumbu berhasil dikirim! Admin akan menghubungi Anda.');
     }
 
     public function indexCustom()
