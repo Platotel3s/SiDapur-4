@@ -54,7 +54,7 @@ class OrderController extends Controller
     public function sudahBayar(Orders $order)
     {
         $order->update([
-            'status' => 'paid',
+            'status' => 'Paid',
         ]);
 
         return back()->with('success', 'Pembayaran Telah Dikonfirmasi');
@@ -79,7 +79,7 @@ class OrderController extends Controller
             'status' => 'pending',
         ]);
 
-        return back()->with('success', 'Permintaan custom bumbu berhasil dikirim! Admin akan menghubungi Anda.');
+        return redirect()->route('customer.dashboard')->with('success', 'Permintaan custom bumbu berhasil dikirim! Admin akan menghubungi Anda.');
     }
 
     public function indexCustom()
@@ -120,6 +120,7 @@ class OrderController extends Controller
     {
         $custom = CustomOrders::findOrFail($id);
         $custom->delete();
+
         return back()->with('success', 'Berhasil Hapus custom');
     }
 

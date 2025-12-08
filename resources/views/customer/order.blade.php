@@ -27,7 +27,7 @@
                         <div>
                             <p class="text-sm text-gray-100">Selesai</p>
                             <p class="text-2xl font-bold text-green-600 mt-1">
-                                {{ $orders->where('status', 'paid')->count() }}
+                                {{ $orders->where('status', 'Paid')->count() }}
                             </p>
                         </div>
                         <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
@@ -99,8 +99,8 @@
                         <div>
                             <span class="text-gray-100">Status Bayar:</span>
                             <span
-                                class="font-medium {{ $order->payment_status == 'paid' ? 'text-green-600 p-1 rounded' : 'text-red-600 bg-white p-1 rounded' }}">
-                                {{ ucfirst($order->payment_status) }}
+                                class="font-medium {{ $order->status == 'Paid' ? 'text-green-600 p-1 rounded' : 'text-red-600 bg-white p-1 rounded' }}">
+                                {{ ucfirst($order->status) }}
                             </span>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                             <i class="fas fa-eye mr-2"></i>
                             Detail
                         </a>
-                        @if($order->status == 'delivered')
+                        @if($order->status == 'canceled')
                         <button
                             class="px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition duration-200">
                             <i class="fas fa-redo mr-1"></i>
@@ -197,10 +197,10 @@
                             <td class="py-4 px-6">
                                 <div class="flex flex-col">
                                     <span
-                                        class="{{ $order->payment_status == 'paid' ? 'text-green-600 p-1 rounded-xl bg-white text-center' : 'text-red-600 text-center p-1 rounded-xl bg-white' }} font-medium">
-                                        {{ ucfirst($order->payment_status) }}
+                                        class="{{ $order->status == 'Paid' ? 'text-green-600 p-1 rounded-xl bg-white text-center' : 'text-red-600 text-center p-1 rounded-xl bg-white' }} font-medium">
+                                        {{ ucfirst($order->status) }}
                                     </span>
-                                    @if($order->payment_status == 'pending' && $order->status != 'cancelled')
+                                    @if($order->payment_status == 'Pending' && $order->status != 'cancelled')
                                     <button class="text-sm text-blue-600 hover:text-blue-800 mt-1">
                                         Bayar Sekarang
                                     </button>
@@ -214,7 +214,7 @@
                                         <i class="fas fa-eye mr-1"></i>
                                         Detail
                                     </a>
-                                    @if($order->status == 'delivered')
+                                    @if($order->status == 'canceled')
                                     <button
                                         class="px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition duration-200">
                                         <i class="fas fa-redo"></i>

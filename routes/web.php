@@ -62,7 +62,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/orders', 'index')->name('admin.orders.index');
         Route::post('/admin/orders/{order}/marked', 'sudahBayar')->name('mark.paid');
         Route::get('/orderan/custom/bumbu', 'indexCustom')->name('custom.bumbu');
-        Route::post('/konfirmasi/{id}/custom', 'customConfirm')->name('confirm.custom');
+        Route::post('/konfirmasi/{id}/custom', 'confirmCustom')->name('confirm.custom');
         Route::get('/tampilkan/{id}/custom', 'customConfirm')->name('admin.custom.show');
     });
 
@@ -96,7 +96,7 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
         Route::get('/order/list', 'orderList')->name('customer.orders');
         Route::get('/order/detail/{id}', 'orderDetail')->name('customer.order.detail');
         Route::get('/order/success', 'orderSuccess')->name('orderan.success');
-        Route::post('/custom/order', 'customOrder')->name('custom.order');
+        Route::post('/custom/order/{id}', 'customOrder')->name('custom.order');
     });
     Route::controller(PaymentController::class)->group(function () {
         Route::get('/index/payment', 'index')->name('index.payment');
