@@ -2,14 +2,9 @@ function openCustomModal(id, productName) {
     document.getElementById("modalProductId").value = id;
     document.getElementById("modalProductName").innerText =
         "Custom Bumbu - " + productName;
-
-    // >>>>>>>>>>>>>>> Tambahkan ini <<<<<<<<<<<<<<<<<<
     document.getElementById("customForm").action = "/custom/order/" + id;
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
     document.getElementById("customModal").classList.remove("hidden");
 }
-
 function closeCustomModal() {
     document.getElementById("customModal").classList.add("hidden");
 }
