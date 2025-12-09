@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
-@import "@fortawesome/fontawesome-free/css/all.min.css";
-
-/* HANYA ini yang benar untuk Laravel */
-@source "../views/**/*.blade.php";
-@source "../js/**/*.js";
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
 
 @theme {
     --font-sans:

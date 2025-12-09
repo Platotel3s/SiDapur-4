@@ -31,8 +31,7 @@
     <div class="space-y-1 lg:space-y-2 flex-1">
         @auth
         @if (Auth::user()->role==='admin')
-        <a href="{{ route('index.user') }}"
-            class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group
+        <a href="{{ route('index.user') }}" class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group
             {{request()->routeIs('index.user') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}">
             <i class="fas fa-chart-area w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
             <span>Data Pengguna</span>
