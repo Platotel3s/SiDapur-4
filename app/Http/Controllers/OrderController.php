@@ -100,7 +100,7 @@ class OrderController extends Controller
     {
         $custom = CustomOrders::findOrFail($id);
         $custom->update([
-            'status' => 'reviewed',
+            'status' => 'confirmed',
         ]);
 
         return back()->with('success', 'Pesanan custom telah direview dan disetujui!');

@@ -62,11 +62,15 @@
                     </a>
 
                     @if($custom->status == 'pending')
-                    <button
-                        class="flex-1 sm:flex-none sm:w-auto flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-xl transition duration-200">
-                        <i class="fas fa-check"></i>
-                        Approve Order
-                    </button>
+                    <form method="post" action="{{ route('approve.custom',$custom->id) }}">
+                        @csrf
+                        <button
+                            class="flex-1 sm:flex-none sm:w-auto flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-xl transition duration-200">
+                            <i class="fas fa-check"></i>
+                            Approve Order
+                        </button>
+                    </form>
+
 
                     <button
                         class="flex-1 sm:flex-none sm:w-auto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-xl transition duration-200">
