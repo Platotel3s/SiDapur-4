@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk Akun</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/king.png') }}">
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gradient-to-br from-black to-red-600 flex justify-center items-center min-h-screen">
+<body class="bg-linear-to-br from-black to-red-600 flex justify-center items-center min-h-screen">
 
     <div class="w-full max-w-md bg-white/10 border border-amber-600 rounded-2xl shadow-lg p-8">
         <h2 class="text-2xl font-bold text-center mb-6 text-gray-100">Masuk Akun</h2>
@@ -49,8 +50,7 @@
                         class="w-full border border-gray-300 rounded-lg p-3 pr-10 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 focus:outline-none transition text-white"
                         required placeholder="Masukkan password">
 
-                    <button type="button" id="togglePassword"
-                        class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-800 hover:text-gray-800">
+                    <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-800 hover:text-gray-800" onclick="togglePassword('password')">
                         <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -85,8 +85,12 @@
 
             <p class="text-center text-gray-100 mt-3">
                 Belum punya akun?
-                <a href="{{ route('regis.page') }}" class="text-black font-semibold hover:underline font-medium">Daftar
+                <a href="{{ route('regis.page') }}" class="text-black font-semibold hover:underline ">Daftar
                     di sini</a>
+            </p>
+            <p class="text-center text-gray-100 mt-3">
+                Lupa password ?
+                <a href="{{ route('forgot.page') }}" class="text-black font-semibold hover:underline">Buat Password Baru di sini</a>
             </p>
         </form>
     </div>

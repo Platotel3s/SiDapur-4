@@ -17,6 +17,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'role',
+        'reset_token'
     ];
 
     protected $hidden = [

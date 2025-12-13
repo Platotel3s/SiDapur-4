@@ -19,11 +19,17 @@ Route::get('/testing', function () {
     return view('layouts.app');
 })->name('testing');
 
-Route::get('/login-page', [AuthController::class, 'loginPage'])->name('login.page');
-Route::get('/regis-page', [AuthController::class, 'regisPage'])->name('regis.page');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::controller(AuthController::class)->group(function(){
+    Route::get('login-page','loginPage')->name('login.page');
+    Route::get('regis-page','regisPage')->name('regis.page');
+    Route::post('/register','register')->name('register');
+    Route::post('/login','login')->name('login');
+    Route::post('/logout','logout')->name('logout');
+    Route::get('forgot-password','forgotPasswordPage')->name('forgot.page');
+    Route::post('forgot-password','forgotPassword')->name('forgot.send');
+    Route::get('/reset-password','resetPasswordPage')->name('reset.page');
+    Route::post('/reset-password','resetPassword')->name('reset.update');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile')->middleware('auth');
@@ -62,9 +68,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/orders', 'index')->name('admin.orders.index');
         Route::post('/admin/orders/{order}/marked', 'sudahBayar')->name('mark.paid');
         Route::get('/orderan/custom/bumbu', 'indexCustom')->name('custom.bumbu');
-        Route::post('/konfirmasi/{id}/custom', 'confirmCustom')->name('confirm.custom');
         Route::get('/tampilkan/{id}/custom', 'customConfirm')->name('admin.custom.show');
-        Route::post('/approved/{id}', 'approveCustom')->name('approve.custom');
+        Route::post('/admin/custom/{id}/approve', 'approveCustom')->name('admin.custom.approve');
+        Route::post('/admin/reject/{id}/custom','rejectCustom')->name('admin.custom.reject');
     });
 
 });

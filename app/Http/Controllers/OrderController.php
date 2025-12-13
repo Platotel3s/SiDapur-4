@@ -123,14 +123,4 @@ class OrderController extends Controller
 
         return back()->with('success', 'Berhasil Hapus custom');
     }
-
-    public function confirmCustom($id)
-    {
-        $custom = CustomOrders::findOrFail($id);
-        $custom->update([
-            'status' => 'confirmed',
-        ]);
-
-        return back()->with('success', 'Pesanan berhasil dikonfirmasi!');
-    }
 }

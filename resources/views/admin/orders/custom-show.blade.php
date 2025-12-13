@@ -11,8 +11,8 @@
                 <span class="px-4 py-2 rounded-full text-sm font-semibold
                     {{ $custom->status == 'pending' ? 'bg-yellow-500/20 text-yellow-300' :
                        ($custom->status == 'reviewed' ? 'bg-green-500/20 text-green-300' :
-                       ($custom->status == 'processing' ? 'bg-blue-500/20 text-blue-300' :
-                       ($custom->status == 'completed' ? 'bg-emerald-500/20 text-emerald-300' :
+                       ($custom->status == 'confirmed' ? 'bg-blue-500/20 text-blue-300' :
+                       ($custom->status == 'rejected' ? 'bg-emerald-500/20 text-emerald-300' :
                        'bg-red-500/20 text-red-300'))) }}">
                     {{ ucfirst($custom->status ?? 'Unknown') }}
                 </span>
@@ -55,25 +55,25 @@
                     </div>
                 </div>
                 <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                    <a href="{{ url()->previous() }}"
+                    <a href="{{ route('custom.bumbu') }}"
                         class="flex-1 sm:flex-none sm:w-auto flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-600 text-white font-medium py-3 px-6 rounded-xl transition duration-200">
                         <i class="fas fa-arrow-left"></i>
                         Kembali
                     </a>
 
                     @if($custom->status == 'pending')
-                    <form method="post" action="{{ route('approve.custom',$custom->id) }}">
+                    <form method="post" action="{{ route('admin.custom.approve',$custom->id) }}">
                         @csrf
                         <button
-                            class="flex-1 sm:flex-none sm:w-auto flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-xl transition duration-200">
+                            class="flex-1 sm:flex-none sm:w-auto flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-xl transition duration-200" type="submit">
                             <i class="fas fa-check"></i>
                             Approve Order
                         </button>
                     </form>
+                    <form method="post" action="{{ route('admin.custom.reject',$custom->id) }}">
 
-
-                    <button
-                        class="flex-1 sm:flex-none sm:w-auto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-xl transition duration-200">
+                    </form>
+                    <button class="flex-1 sm:flex-none sm:w-auto flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-xl transition duration-200" type="submit">
                         <i class="fas fa-times"></i>
                         Tolak Order
                     </button>
@@ -145,44 +145,4 @@
     </div>
 </div>
 
-<script>
-    function copyOrderDetails() {
-        const orderDetails = `
-Custom Order Details:
-=====================
-Produk: {{ $custom->produk->name ?? 'N/A' }}
-Catatan: {{ $custom->request_note }}
-Nama Penerima: {{ $custom->namaPenerima }}
-No HP: {{ $custom->nomorHp }}
-Alamat: {{ $custom->alamat }}
-Status: {{ ucfirst($custom->status) }}
-Tanggal: {{ $custom->created_at->format('d M Y, H:i') }}
-    `.trim();
-
-        navigator.clipboard.writeText(orderDetails).then(() => {
-            showNotification('Detail order berhasil disalin!', 'success');
-        });
-    }
-
-    function showNotification(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `fixed top-4 right-4 px-6 py-3 rounded-xl shadow-lg text-white font-medium z-50 transform transition-all duration-300 ${type === 'success' ? 'bg-green-600' : 'bg-blue-600'
-            }`;
-        notification.textContent = message;
-        notification.style.transform = 'translateX(100%)';
-
-        document.body.appendChild(notification);
-
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 10);
-
-        setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 3000);
-    }
-</script>
 @endsection

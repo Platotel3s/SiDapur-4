@@ -3,16 +3,12 @@
 @section('content')
 <div class="min-h-screen bg-white/10 border rounded-2xl border-yellow-500 py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
-
-        <!-- Header -->
         <div class="mb-8">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <h1 class="text-2xl sm:text-3xl font-bold text-gray-100">Custom Bumbu Orders</h1>
                     <p class="text-gray-100 mt-1">Kelola dan pantau pesanan bumbu custom dari customer</p>
                 </div>
-
-                <!-- Stats -->
                 <div class="flex items-center gap-4">
                     <button onclick="window.print()"
                         class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition duration-200">
@@ -21,8 +17,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Stats Cards -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div class="bg-white/10 rounded-xl shadow-sm border border-yellow-500 p-4">
                 <div class="flex items-center justify-between">
@@ -41,23 +35,9 @@
             <div class="bg-white/10 rounded-xl shadow-sm border border-yellow-500 p-4">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-gray-100 text-sm">Processing</p>
-                        <p class="text-2xl font-bold text-blue-600 mt-1">
-                            {{ $customize->where('status', 'processing')->count() }}
-                        </p>
-                    </div>
-                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-cogs text-blue-600"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white/10 rounded-xl shadow-sm border border-yellow-500 p-4">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-100 text-sm">Completed</p>
+                        <p class="text-gray-100 text-sm">Confirmed</p>
                         <p class="text-2xl font-bold text-green-600 mt-1">
-                            {{ $customize->where('status', 'completed')->count() }}
+                            {{ $customize->where('status', 'confirmed')->count() }}
                         </p>
                     </div>
                     <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
@@ -80,8 +60,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Search & Filters -->
         <div class="bg-white/10 rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
             <div class="flex flex-col md:flex-row md:items-center gap-4">
                 <div class="flex-1">
@@ -95,9 +73,9 @@
                     <select class="border border-gray-300 rounded-lg px-3 py-2.5 text-gray-100">
                         <option value="">Semua Status</option>
                         <option value="pending">Pending</option>
-                        <option value="processing">Processing</option>
-                        <option value="completed">Completed</option>
-                        <option value="cancelled">Cancelled</option>
+                        <option value="processing">Reviewed</option>
+                        <option value="completed">Confirmed</option>
+                        <option value="cancelled">Rejected</option>
                     </select>
                     <button
                         class="px-4 py-2.5 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-200">
@@ -106,8 +84,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Mobile View -->
         <div class="lg:hidden space-y-4">
             @forelse($customize as $c)
             <div class="bg-white/10 rounded-xl shadow-sm border border-yellow-500 overflow-hidden">
@@ -119,8 +95,8 @@
                         </div>
                         <span class="px-3 py-1 rounded-full text-xs font-medium
                             {{ $c->status == 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                               ($c->status == 'processing' ? 'bg-blue-100 text-blue-800' :
-                               ($c->status == 'completed' ? 'bg-green-100 text-green-800' :
+                               ($c->status == 'reviewed' ? 'bg-blue-100 text-blue-800' :
+                               ($c->status == 'confirmed' ? 'bg-green-100 text-green-800' :
                                'bg-red-100 text-red-800')) }}">
                             {{ ucfirst($c->status) }}
                         </span>
@@ -162,8 +138,6 @@
             </div>
             @endforelse
         </div>
-
-        <!-- Desktop View -->
         <div class="hidden lg:block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full">
@@ -214,8 +188,8 @@
                             <td class="py-4 px-6">
                                 <span class="px-3 py-1.5 rounded-full text-sm font-medium
                                     {{ $c->status == 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                                       ($c->status == 'processing' ? 'bg-blue-100 text-blue-800' :
-                                       ($c->status == 'completed' ? 'bg-green-100 text-green-800' :
+                                       ($c->status == 'reviewed' ? 'bg-blue-100 text-blue-800' :
+                                       ($c->status == 'confirmed' ? 'bg-green-100 text-green-800' :
                                        'bg-red-100 text-red-800')) }}">
                                     {{ ucfirst($c->status) }}
                                 </span>
@@ -256,8 +230,6 @@
                 </table>
             </div>
         </div>
-
-        <!-- Pagination -->
         @if($customize->hasPages())
         <div class="mt-6">
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
@@ -265,8 +237,6 @@
             </div>
         </div>
         @endif
-
-        <!-- Info Section -->
         <div class="mt-8 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-6">
             <div class="flex items-start gap-4">
                 <div class="flex-shrink-0">
@@ -297,15 +267,12 @@
 </div>
 
 <script>
-    // Filter functionality
     document.querySelector('select').addEventListener('change', function (e) {
         const status = e.target.value;
         if (status) {
             window.location.href = `?status=${status}`;
         }
     });
-
-    // Search functionality
     let searchTimeout;
     document.querySelector('input[type="text"]').addEventListener('input', function (e) {
         clearTimeout(searchTimeout);
@@ -325,46 +292,4 @@
     });
 </script>
 
-<style>
-    .pagination {
-        display: flex;
-        justify-content: center;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .pagination li {
-        margin: 0 2px;
-    }
-
-    .pagination li a,
-    .pagination li span {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 40px;
-        height: 40px;
-        padding: 0 12px;
-        border-radius: 8px;
-        font-weight: 500;
-        transition: all 0.2s;
-    }
-
-    .pagination li.active span {
-        background-color: #3b82f6;
-        color: white;
-        border-color: #3b82f6;
-    }
-
-    .pagination li:not(.active):not(.disabled) a:hover {
-        background-color: #f3f4f6;
-        color: #1f2937;
-    }
-
-    .pagination li.disabled span {
-        color: #9ca3af;
-        cursor: not-allowed;
-    }
-</style>
 @endsection

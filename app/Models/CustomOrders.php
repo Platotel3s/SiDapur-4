@@ -14,6 +14,7 @@ class CustomOrders extends Model
         'nomorHp',
         'alamat',
         'price',
+        'status'
     ];
 
     public function user()

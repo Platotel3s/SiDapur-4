@@ -8,7 +8,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gradient-to-br from-black to-red-600 flex justify-center items-center min-h-screen p-4">
+<body class="bg-linear-to-br from-black to-red-600 flex justify-center items-center min-h-screen p-4">
 
     <div
         class="w-full max-w-md bg-white/10 backdrop-blur-sm border border-amber-600/50 rounded-2xl shadow-xl p-6 md:p-8">
