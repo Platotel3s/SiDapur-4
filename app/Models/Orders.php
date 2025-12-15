@@ -13,7 +13,6 @@ class Orders extends Model
         'total_price',
         'status',
         'payment_method',
-        'payment_status',
     ];
 
     public function user()
@@ -33,7 +32,7 @@ class Orders extends Model
 
     public function payment()
     {
-        return $this->hasOne(Payments::class);
+        return $this->hasOne(Payments::class,'order_id');
     }
 
     public function customOrder()

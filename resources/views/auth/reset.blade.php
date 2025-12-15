@@ -81,7 +81,6 @@
                     </div>
                 </div>
 
-                <!-- Confirm Password Field -->
                 <div class="mb-8">
                     <label class="block text-black text-sm font-medium mb-2">
                         <i class="fas fa-lock mr-2 text-yellow-500"></i>
@@ -122,8 +121,6 @@
                     </a>
                 </div>
             </form>
-
-            <!-- Footer -->
             <div class="bg-gray-50 px-8 py-4 border-t border-gray-200">
                 <div class="flex items-center justify-center">
                     <img src="{{ asset('images/king.png') }}" alt="King Logo" class="h-6 w-6 mr-2">
@@ -131,8 +128,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Notifikasi -->
         @if(session('status'))
         <div class="mt-4 p-4 rounded-lg bg-green-50 border border-green-200 flex items-center">
             <i class="fas fa-check-circle text-green-500 mr-3"></i>

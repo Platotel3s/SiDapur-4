@@ -33,8 +33,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- Customer Details -->
                 <div class="bg-black backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
                     <h2 class="text-xl font-bold text-white mb-4">Detail Customer</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -80,8 +78,6 @@
                     @endif
                 </div>
             </div>
-
-            <!-- Right Column - Actions & Info -->
             <div class="space-y-6">
                 <div class="bg-black backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
                     <h2 class="text-xl font-bold text-white mb-4">Ringkasan Order</h2>
@@ -102,8 +98,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Actions -->
                 <div class="bg-black backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
                     <h2 class="text-xl font-bold text-white mb-4">Aksi</h2>
                     <div class="space-y-3">

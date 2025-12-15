@@ -11,8 +11,6 @@
         </div>
         @endif
     </div>
-
-    <!-- Mobile Card View -->
     <div class="md:hidden space-y-4">
         @foreach ($customer as $index => $user)
         <div class="bg-white/20 rounded-xl shadow-lg border border-gray-100 p-4">

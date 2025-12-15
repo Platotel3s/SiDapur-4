@@ -56,6 +56,11 @@
             <i class="fas fa-box w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
             <span>Daftar Orderan</span>
         </a>
+        <a href="{{ route('index.payment')}}"
+            class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition duration-200 group {{request()->routeIs('index.payment') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}">
+            <i class="fas fa-file-invoice-dollar w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
+            <span>Bukti Pembayaran</span>
+        </a>
         @elseif(Auth::user()->role==='customer')
         <a href="{{route('customer.dashboard')}}"
             class="relative flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition {{request()->routeIs('customer.dashboard') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}"">

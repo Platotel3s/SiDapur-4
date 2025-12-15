@@ -128,7 +128,7 @@
             <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
                 <div class="flex items-start gap-4 mb-3">
                     <div
-                        class="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0">
+                        class="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center shrink-0">
                         @if($product->thumbnail)
                         <img src="{{ asset('storage/'.$product->thumbnail) }}" alt="{{ $product->name }}"
                             class="w-full h-full object-cover">

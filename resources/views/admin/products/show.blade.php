@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 border-b border-gray-200">
+            <div class="bg-linear-to-r from-blue-50 to-indigo-50 p-6 border-b border-gray-200">
                 <div class="flex flex-col lg:flex-row items-start lg:items-center gap-6">
                     <div
                         class="w-full lg:w-48 h-48 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex items-center justify-center">
@@ -234,10 +234,4 @@
         </div>
     </div>
 </div>
-
-<style>
-    .bg-gradient-custom {
-        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-    }
-</style>
 @endsection

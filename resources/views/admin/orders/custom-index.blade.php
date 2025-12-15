@@ -237,9 +237,9 @@
             </div>
         </div>
         @endif
-        <div class="mt-8 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-6">
+        <div class="mt-8 bg-linear-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-6">
             <div class="flex items-start gap-4">
-                <div class="flex-shrink-0">
+                <div class="shrink-0">
                     <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
                         <i class="fas fa-lightbulb text-amber-600 text-xl"></i>
                     </div>

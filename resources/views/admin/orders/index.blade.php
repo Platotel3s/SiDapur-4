@@ -137,12 +137,9 @@
                 </div>
             </div>
         </div>
-
-        <!-- Mobile View -->
         <div class="lg:hidden space-y-4">
             @forelse($orders as $order)
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                <!-- Order Header -->
                 <div class="p-4 border-b border-gray-100">
                     <div class="flex justify-between items-start">
                         <div>
@@ -161,8 +158,6 @@
                         </span>
                     </div>
                 </div>
-
-                <!-- Customer Info -->
                 <div class="p-4">
                     <div class="space-y-3">
                         <div>
@@ -186,8 +181,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Action -->
                 <div class="px-4 pb-4 pt-3 border-t border-gray-100">
                     @if($order->status == 'Pending')
                     <form action="{{ route('mark.paid', $order->id) }}" method="POST">
@@ -229,8 +222,6 @@
             </div>
             @endforelse
         </div>
-
-        <!-- Desktop View -->
         <div class="hidden lg:block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full">
@@ -350,8 +341,6 @@
                 </table>
             </div>
         </div>
-
-        <!-- Pagination -->
         @if($orders->hasPages())
         <div class="mt-6">
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
@@ -359,8 +348,6 @@
             </div>
         </div>
         @endif
-
-        <!-- Help Section -->
         <div class="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-6">
             <div class="flex items-start gap-4">
                 <div class="flex-shrink-0">
@@ -409,8 +396,6 @@
         </div>
     </div>
 </div>
-
-<!-- Confirmation Modal -->
 <div id="confirmModal"
     class="hidden fixed inset-0 bg-transparent bg-opacity-50 z-50 flex items-center justify-center p-4">
     <div

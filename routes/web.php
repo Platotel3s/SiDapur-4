@@ -61,7 +61,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::delete('/destroy/{id}/products', 'destroy')->name('delete.products');
     });
     Route::controller(PaymentController::class)->group(function () {
-        Route::get('/admin/payments', 'adminList')->name('admin.payment.list');
+        Route::get('/admin/payments', 'index')->name('index.payment');
         Route::post('/admin/payment/verify/{id}', 'verifyPayment')->name('admin.payment.verify');
     });
     Route::controller(OrderController::class)->group(function () {
@@ -106,7 +106,8 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
         Route::post('/custom/order/{id}', 'customOrder')->name('custom.order');
     });
     Route::controller(PaymentController::class)->group(function () {
-        Route::get('/index/payment', 'index')->name('index.payment');
+        Route::get('/index/payment', 'index')->name('index.payment.customer');
         Route::get('/create/payment', 'create')->name('create.payment');
+        Route::post('/store/payment','store')->name('customer.payments.store');
     });
 });
