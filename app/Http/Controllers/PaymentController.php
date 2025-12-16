@@ -15,7 +15,10 @@ class PaymentController extends Controller
         $payments = Payments::with(['order.user'])->latest()->paginate(10);
         return view('admin.payments.index', compact('payments'));
     }
-
+    public function indexCustomer() {
+        $payments=Payments::with(['order.user'])->latest()->paginate(5);
+        return view('customer.payments.index',compact('payments'));
+    }
     public function store(Request $request)
     {
         $user = Auth::user();

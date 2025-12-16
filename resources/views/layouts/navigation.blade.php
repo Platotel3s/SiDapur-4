@@ -89,6 +89,11 @@
             <i class=" fas fa-home w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
             <span>Alamat</span>
         </a>
+        <a href="{{route('index.payment.customer')}}"
+            class="relative flex items-center px-4 py-3 rounded-lg hover:bg-slate-700 transition {{request()->routeIs('index.payment.customer') ? 'bg-slate-700 border-l-4 border-blue-500' : ''}}"">
+            <i class=" fas fa-credit-card w-6 text-center mr-3 text-slate-400 group-hover:text-white"></i>
+            <span>Daftar Bukti Pembayaran</span>
+        </a>
         @endif
         @endauth
     </div>

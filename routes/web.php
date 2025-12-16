@@ -106,7 +106,7 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
         Route::post('/custom/order/{id}', 'customOrder')->name('custom.order');
     });
     Route::controller(PaymentController::class)->group(function () {
-        Route::get('/index/payment', 'index')->name('index.payment.customer');
+        Route::get('/index/payment', 'indexCustomer')->name('index.payment.customer');
         Route::get('/create/payment', 'create')->name('create.payment');
         Route::post('/store/payment','store')->name('customer.payments.store');
     });

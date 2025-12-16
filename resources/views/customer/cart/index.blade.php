@@ -200,10 +200,75 @@
         <div class="space-y-4">
             <form action="{{ route('checkout') }}" method="POST">
                 @csrf
-                <label for="pay_cod">COD</label>
-                <input type="radio" name="payment_method" id="pay_cod" value="cod" checked>
-                <label for="pay_transfer">Transfer</label>
-                <input type="radio" name="payment_method" id="pay_transfer" value="transfer">
+
+<div class="mb-4">
+    <h4 class="text-white font-semibold mb-3">Metode Pembayaran</h4>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <label
+            for="pay_cod"
+            class="relative cursor-pointer rounded-xl border border-gray-700 bg-white/5 p-4 flex items-center gap-4
+                   transition hover:border-amber-400
+                   peer-checked:border-amber-500 peer-checked:bg-amber-500/10">
+
+            <input
+                type="radio"
+                name="payment_method"
+                id="pay_cod"
+                value="cod"
+                class="peer hidden"
+                checked
+            >
+
+            <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-amber-500/20 text-amber-400">
+                <i class="fas fa-truck text-xl"></i>
+            </div>
+
+            <div class="flex-1">
+                <p class="text-white font-semibold">COD</p>
+                <p class="text-sm text-gray-400">
+                    Bayar langsung saat barang diterima
+                </p>
+            </div>
+
+            <div
+                class="w-5 h-5 rounded-full border-2 border-gray-500
+                       peer-checked:border-amber-400 peer-checked:bg-amber-400">
+            </div>
+        </label>
+        <label
+            for="pay_transfer"
+            class="relative cursor-pointer rounded-xl border border-gray-700 bg-white/5 p-4 flex items-center gap-4
+                   transition hover:border-blue-400
+                   peer-checked:border-blue-500 peer-checked:bg-blue-500/10">
+
+            <input
+                type="radio"
+                name="payment_method"
+                id="pay_transfer"
+                value="transfer"
+                class="peer hidden"
+            >
+
+            <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-blue-500/20 text-blue-400">
+                <i class="fas fa-university text-xl"></i>
+            </div>
+
+            <div class="flex-1">
+                <p class="text-white font-semibold">Transfer Bank</p>
+                <p class="text-sm text-gray-400">
+                    Transfer via rekening sebelum pengiriman
+                </p>
+            </div>
+
+            <div
+                class="w-5 h-5 rounded-full border-2 border-gray-500
+                       peer-checked:border-blue-400 peer-checked:bg-blue-400">
+            </div>
+        </label>
+    </div>
+</div>
+
                 <button type="submit"
                     class="w-full bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
                     <i class="fas fa-shopping-bag"></i>
@@ -234,58 +299,5 @@
 
 </div>
 
-<script>
-    function incrementQuantity(button, maxStock = null) {
-        const form = button.closest('form');
-        const input = form.querySelector('input[name="kuantitas"]');
-        let value = parseInt(input.value) || 1;
-
-        if (maxStock && value >= maxStock) {
-            showNotification(`Stok maksimal ${maxStock}`, 'warning');
-            return;
-        }
-
-        input.value = value + 1;
-    }
-
-    function decrementQuantity(button) {
-        const form = button.closest('form');
-        const input = form.querySelector('input[name="kuantitas"]');
-        let value = parseInt(input.value) || 1;
-
-        if (value > 1) {
-            input.value = value - 1;
-        }
-    }
-
-    function showNotification(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg text-white font-medium z-50 transform transition-transform duration-300 ${type === 'warning' ? 'bg-yellow-600' : 'bg-blue-600'
-            }`;
-        notification.textContent = message;
-        notification.style.transform = 'translateX(100%)';
-        document.body.appendChild(notification);
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 10);
-        setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 3000);
-    }
-</script>
-
-<style>
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    input[type="number"] {
-        -moz-appearance: textfield;
-    }
-</style>
+<script src="{{ asset('js/cart.js') }}"></script>
 @endsection
