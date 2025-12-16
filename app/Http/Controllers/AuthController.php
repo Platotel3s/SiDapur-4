@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
@@ -18,21 +18,20 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name'     => 'required|string',
             'password' => 'required|string|min:8|confirmed',
-            'phone' => 'required|string|max:13|unique:users,phone',
-        ],
-            [
+            'phone'    => 'required|string|max:13|unique:users,phone',
+        ], [
                 'phone.unique' => 'Nomor ini sudah digunakan',
-            ]
-        );
-        $user = User::create([
-            'name' => $request->name,
-            'password' => Hash::make($request->password),
-            'phone' => $request->phone,
-        ]);
-        Auth::login($user);
+            ]);
 
+        $user = User::create([
+            'name'     => $request->name,
+            'password' => Hash::make($request->password),
+            'phone'    => $request->phone,
+        ]);
+
+        Auth::login($user);
         return redirect()->route('login.page');
     }
 
@@ -44,21 +43,19 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credential = $request->validate([
-            'phone' => 'required|string',
+            'phone'    => 'required|string',
             'password' => 'required|string',
         ]);
+
         if (Auth::attempt($credential)) {
             $request->session()->regenerate();
-            if (Auth::user()->role === 'admin') {
-                return redirect('/admin/dashboard');
-            } elseif (Auth::user()->role === 'customer') {
-                return redirect('/customer/dashboard');
-            }
 
-            return back()->withErrors([
-                'phone' => 'Telepon belum terdaftar',
-            ]);
+            return Auth::user()->role === 'admin'
+                ? redirect('/admin/dashboard')
+                : redirect('/customer/dashboard');
         }
+
+        return back()->withErrors(['phone' => 'Login gagal']);
     }
 
     public function logout(Request $request)
@@ -66,75 +63,84 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
         return redirect('/');
     }
 
-    public function updatePassword(Request $request)
+    public function forgotPasswordPage()
     {
-        $request->validate([
-            'current_password' => 'required',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-        if (! Hash::check($request->current_password, auth()->user()->password)) {
-            return back()->withErrors([
-                'current_password' => 'password lama salah',
-            ]);
-        }
-
-        return back()->with('success', 'Berhasil ganti password');
-    }
-
-    public function profile()
-    {
-        return view('auth.profile');
-    }
-
-    public function forgotPasswordPage() {
         return view('auth.forgot');
     }
 
-    public function forgotPassword(Request $request) {
+    public function forgotPassword(Request $request)
+    {
         $request->validate([
-            'phone'=>'required|string|exists:users,phone',
-        ],[
-            'phone.exists'=>'Nomor Handphone tidak terdaftar',
+            'phone' => 'required|string|exists:users,phone',
+        ], [
+                'phone.exists' => 'Nomor Handphone tidak terdaftar',
             ]);
-        $user=User::where('phone',$request->phone)->first();
-        $token=strtoupper(Str::random(6));
+        $user = User::where('phone', $request->phone)->first();
+        $otp = rand(100000, 999999);
         $user->update([
-            'reset_token'=>$token,
+            'reset_token'      => $otp,
+            'reset_expires_at' => now()->addMinutes(5),
         ]);
+        $this->sendOtpWhatsapp($user->phone, $otp);
+
         return redirect()->route('reset.page')->with([
-            'phone'=>$request->phone,
-            'success'=>'kode reset telah dikirim'
+            'phone'   => $request->phone,
+            'success' => 'Kode OTP telah dikirim via WhatsApp',
         ]);
     }
 
-    public function resetPasswordPage() {
-        return view('auth.reset',[
-            'phone'=>session('phone'),
+    public function resetPasswordPage()
+    {
+        return view('auth.reset', [
+            'phone' => session('phone'),
         ]);
     }
 
-    public function resetPassword(Request $request) {
+    public function resetPassword(Request $request)
+    {
         $request->validate([
-            'phone'=>'required|string|exists:users,phone',
-            'toke'=>'required|string',
-            'password'=>'required|string|min:8|confirmed',
+            'phone'    => 'required|string|exists:users,phone',
+            'token'    => 'required|string',
+            'password' => 'required|string|min:8|confirmed',
         ]);
-        $user=User::where('phone',$request->phone)
-            ->where('reset_token',$request->token)
+
+        $user = User::where('phone', $request->phone)
+            ->where('reset_token', $request->token)
             ->first();
-        if (!$user) {
-            return back()->withErrors([
-                'token'=>'Token salah atau sudah kadaluarsa',
-            ]);
+
+        if (! $user) {
+            return back()->withErrors(['token' => 'Kode OTP salah']);
         }
+
+        if (now()->greaterThan($user->reset_expires_at)) {
+            return back()->withErrors(['token' => 'Kode OTP sudah kedaluwarsa']);
+        }
+
         $user->update([
-            'password'=>Hash::make($request->password),
-            'reset_token'=>null,
+            'password'          => Hash::make($request->password),
+            'reset_token'       => null,
+            'reset_expires_at'  => null,
         ]);
-        return redirect()->route('login.page')->with('success','Berhasil update password');
+
+        return redirect()->route('login.page')
+            ->with('success', 'Password berhasil direset');
+    }
+    private function sendOtpWhatsapp($phone, $otp)
+    {
+        $message = "🔐 *Reset Password SiDapur*\n\n"
+            . "Kode OTP Anda: *{$otp}*\n"
+            . "Berlaku 5 menit.\n\n"
+            . "JANGAN berikan kode ini ke siapa pun.";
+
+        Http::withHeaders([
+            'Authorization' => env('FONNTE_TOKEN'),
+        ])->post('https://api.fonnte.com/send', [
+                'target'  => $phone,
+                'message' => $message,
+                'countryCode' => '62',
+            ]);
     }
 }

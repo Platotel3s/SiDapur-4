@@ -1,17 +1,22 @@
-function togglePassword(inputId) {
-    const input = document.getElementById(inputId);
-    const eye = document.getElementById("eyeIcon");
-    const eyeSlash = document.getElementById("eyeSlashIcon");
+function togglePassword() {
+    const passwordField = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+    const eyeSlashIcon = document.getElementById('eyeSlashIcon');
+    const isPassword = passwordField.type === 'password';
+    passwordField.type = isPassword ? 'text' : 'password';
 
-    if (!input || !eye || !eyeSlash) return;
-
-    if (input.type === "password") {
-        input.type = "text";
-        eye.classList.add("hidden");
-        eyeSlash.classList.remove("hidden");
+    if (isPassword) {
+        eyeIcon.classList.add('hidden');
+        eyeSlashIcon.classList.remove('hidden');
     } else {
-        input.type = "password";
-        eye.classList.remove("hidden");
-        eyeSlash.classList.add("hidden");
+        eyeIcon.classList.remove('hidden');
+        eyeSlashIcon.classList.add('hidden');
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.getElementById('togglePassword');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', togglePassword);
+    }
+});
