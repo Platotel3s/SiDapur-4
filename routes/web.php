@@ -98,6 +98,9 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
         Route::get('/alamat/tambah', 'create')->name('alamat.create');
         Route::post('/alamat/tambah', 'store')->name('alamat.store');
         Route::post('/alamat/set-utama/{id}', 'setUtama')->name('alamat.setUtama');
+        Route::delete('/hapus/alamat/{id}','delete')->name('hapus.alamat');
+        Route::get('/edit/alamat/{id}','edit')->name('edit.alamat');
+        Route::patch('/update/alamat/{id}','update')->name('update.alamat');
     });
     Route::controller(OrderController::class)->group(function () {
         Route::get('/order/list', 'orderList')->name('customer.orders');

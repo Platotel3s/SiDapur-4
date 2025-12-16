@@ -31,7 +31,7 @@ class AddressController extends Controller
             'kodePos' => 'required',
         ]);
         $isDefault = auth()->user()->alamat()->count() == 0;
-        $address = Addresses::create([
+        Addresses::create([
             'user_id' => auth()->id(),
             'label' => $request->label,
             'namaPenerima' => $request->namaPenerima,
@@ -57,5 +57,36 @@ class AddressController extends Controller
         $address->update(['alamatUtama' => true]);
 
         return redirect()->back()->with('success', 'Alamat utama berhasil diubah!');
+    }
+    public function hapusAlamat($id) {
+        $pilihAlamat=Addresses::findOrFail($id);
+        $pilihAlamat->delete();
+        return redirect()->route('alamat.index')->with('success','Berhasil menghapus alamat');
+    }
+    public function edit($id) {
+        $pilihAlamat=Addresses::findOrFail($id);
+        return view('customer.address.edit',compact('pilihAlamat'));
+    }
+
+    public function update(Request $request, $id) {
+        $pilihAlamat=Addresses::findOrFail($id);
+        $request->validate([
+            'label' => 'string',
+            'namaPenerima' => 'string',
+            'nomorPenerima' => 'string',
+            'alamat' => 'string',
+            'kota' => 'string',
+            'provinsi' => 'string',
+            'kodePos' => 'string',
+        ]);
+        $pilihAlamat->update([
+            'label'=>$request->label,
+            'namaPenerima'=>$request->namaPenerima,
+            'alamat'=>$request->alamat,
+            'kota'=>$request->kota,
+            'provinsi'=>$request->provinsi,
+            'kodePos'=>$request->kodePos,
+        ]);
+        return redirect()->route('alamat.index')->with('success','Berhasil memperbarui alamat '.$pilihAlamat->label);
     }
 }
