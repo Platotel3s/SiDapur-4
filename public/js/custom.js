@@ -9,21 +9,22 @@ function openCustomModal(productId, productName) {
     document.body.style.overflow = "hidden";
     modalProductName.innerText = "Custom Bumbu - " + productName;
     modalProductId.value = productId;
-    customForm.action = `/custom/order/${id}`;
+    customForm.action = `/custom/order/${productId}`;
 }
 
 function closeCustomModal() {
     modal.classList.add("hidden");
     modal.classList.remove("flex");
     document.body.style.overflow = "auto";
-
     customForm.reset();
 }
+
 modal.addEventListener("click", function (e) {
     if (e.target === modal) {
         closeCustomModal();
     }
 });
+
 document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
         closeCustomModal();

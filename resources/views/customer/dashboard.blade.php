@@ -36,7 +36,7 @@
     <div class="bg-white p-6 rounded-lg w-96">
         <h2 class="text-lg font-bold mb-4" id="modalProductName">Custom Bumbu</h2>
 
-        <form id="customForm" method="POST" action="{{ route('custom.order',$product->id) }}">
+        <form id="customForm" method="POST">
             @csrf
             <input type="hidden" name="product_id" id="modalProductId">
 

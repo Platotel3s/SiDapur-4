@@ -24,28 +24,8 @@
                     </div>
                     @endif
                 </div>
-                <form action="{{ route('reset.update') }}" method="POST" class="p-8">
+                <form action="{{ route('reset.password') }}" method="POST" class="p-8">
                     @csrf
-                    <input type="hidden" name="phone" value="{{ $phone }}">
-                    <div class="mb-6">
-                        <label class="block text-black font-semibold text-sm font-medium mb-2">
-                            <i class="fas fa-shield-alt mr-2 text-yellow-500"></i>
-                            Kode Token
-                        </label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-key text-yellow-500"></i>
-                            </div>
-                            <input
-                                type="text"
-                                name="token"
-                                placeholder="Masukkan 6-digit kode"
-                                required
-                                class="w-full pl-10 pr-4 py-3 border border-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition duration-200"
-                            >
-                        </div>
-                        <p class="text-black font-semibold text-xs mt-2">Masukkan kode yang dikirim ke nomor HP Anda</p>
-                    </div>
                     <div class="mb-6">
                         <label class="block text-black text-sm font-medium mb-2">
                             <i class="fas fa-lock mr-2 text-yellow-500"></i>
@@ -113,18 +93,11 @@
                         <i class="fas fa-redo mr-2"></i>
                         Reset Password
                     </button>
-
-                    <div class="mt-6 text-center">
-                        <a href="#" class="text-green-600 hover:text-green-800 text-sm font-medium inline-flex items-center">
-                            <i class="fas fa-arrow-left mr-2"></i>
-                            Kirim ulang kode token
-                        </a>
-                    </div>
                 </form>
                 <div class="bg-gray-50 px-8 py-4 border-t border-gray-200">
                     <div class="flex items-center justify-center">
                         <img src="{{ asset('images/king.png') }}" alt="King Logo" class="h-6 w-6 mr-2">
-                        <span class="text-gray-600 text-sm">King System &copy; 2023</span>
+                        <span class="text-gray-600 text-sm">SiDapur &copy; 2023</span>
                     </div>
                 </div>
             </div>

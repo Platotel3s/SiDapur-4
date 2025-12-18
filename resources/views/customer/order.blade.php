@@ -244,7 +244,7 @@
                                     </div>
                                     <h3 class="text-lg font-semibold text-gray-800 mb-2">Belum ada pesanan</h3>
                                     <p class="text-gray-600 mb-4">Mulai belanja untuk membuat pesanan pertama</p>
-                                    <a href="{{ route('produk') }}"
+                                    <a href="{{ route('customer.products') }}"
                                         class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2.5 rounded-lg transition duration-200">
                                         <i class="fas fa-shopping-cart"></i>
                                         Belanja Sekarang

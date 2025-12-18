@@ -95,9 +95,9 @@
                         </div>
                         <span class="px-3 py-1 rounded-full text-xs font-medium
                             {{ $c->status == 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                               ($c->status == 'reviewed' ? 'bg-blue-100 text-blue-800' :
-                               ($c->status == 'confirmed' ? 'bg-green-100 text-green-800' :
-                               'bg-red-100 text-red-800')) }}">
+                            ($c->status == 'reviewed' ? 'bg-blue-100 text-blue-800' :
+                            ($c->status == 'confirmed' ? 'bg-green-100 text-green-800' :
+                            'bg-red-100 text-red-800')) }}">
                             {{ ucfirst($c->status) }}
                         </span>
                     </div>
@@ -148,6 +148,7 @@
                             <th class="py-4 px-6 text-left text-gray-700 font-semibold">Tanggal</th>
                             <th class="py-4 px-6 text-left text-gray-700 font-semibold">Status</th>
                             <th class="py-4 px-6 text-left text-gray-700 font-semibold">Aksi</th>
+                            <th class="py-4 px-6 text-left text-gray-700 font-semibold">Bukti Pembayaran</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
@@ -188,9 +189,9 @@
                             <td class="py-4 px-6">
                                 <span class="px-3 py-1.5 rounded-full text-sm font-medium
                                     {{ $c->status == 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                                       ($c->status == 'reviewed' ? 'bg-blue-100 text-blue-800' :
-                                       ($c->status == 'confirmed' ? 'bg-green-100 text-green-800' :
-                                       'bg-red-100 text-red-800')) }}">
+                                    ($c->status == 'reviewed' ? 'bg-blue-100 text-blue-800' :
+                                    ($c->status == 'confirmed' ? 'bg-green-100 text-green-800' :
+                                    'bg-red-100 text-red-800')) }}">
                                     {{ ucfirst($c->status) }}
                                 </span>
                             </td>
@@ -267,29 +268,29 @@
 </div>
 
 <script>
-    document.querySelector('select').addEventListener('change', function (e) {
-        const status = e.target.value;
-        if (status) {
-            window.location.href = `?status=${status}`;
-        }
-    });
-    let searchTimeout;
-    document.querySelector('input[type="text"]').addEventListener('input', function (e) {
-        clearTimeout(searchTimeout);
-        const searchTerm = e.target.value.trim();
+document.querySelector('select').addEventListener('change', function (e) {
+    const status = e.target.value;
+    if (status) {
+        window.location.href = `?status=${status}`;
+    }
+});
+let searchTimeout;
+document.querySelector('input[type="text"]').addEventListener('input', function (e) {
+    clearTimeout(searchTimeout);
+    const searchTerm = e.target.value.trim();
 
-        searchTimeout = setTimeout(() => {
-            if (searchTerm.length >= 2 || searchTerm.length === 0) {
-                const url = new URL(window.location.href);
-                if (searchTerm) {
-                    url.searchParams.set('search', searchTerm);
-                } else {
-                    url.searchParams.delete('search');
-                }
-                window.location.href = url.toString();
+    searchTimeout = setTimeout(() => {
+        if (searchTerm.length >= 2 || searchTerm.length === 0) {
+            const url = new URL(window.location.href);
+            if (searchTerm) {
+                url.searchParams.set('search', searchTerm);
+            } else {
+                url.searchParams.delete('search');
             }
-        }, 500);
-    });
+            window.location.href = url.toString();
+        }
+    }, 500);
+});
 </script>
 
 @endsection

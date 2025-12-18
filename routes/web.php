@@ -25,10 +25,10 @@ Route::controller(AuthController::class)->group(function(){
     Route::post('/register','register')->name('register');
     Route::post('/login','login')->name('login');
     Route::post('/logout','logout')->name('logout');
-    Route::get('forgot-password','forgotPasswordPage')->name('forgot.page');
-    Route::post('forgot-password','forgotPassword')->name('forgot.send');
-    Route::get('/reset-password','resetPasswordPage')->name('reset.page');
-    Route::post('/reset-password','resetPassword')->name('reset.update');
+    Route::get('forgot/password','forgotPage')->name('forgot.page');
+    Route::post('check/phone','checkPhone')->name('check.phone');
+    Route::get('/reset.page','resetPage')->name('reset.page');
+    Route::post('/reset/password','resetPassword')->name('reset.password');
 });
 
 Route::middleware(['auth'])->group(function () {

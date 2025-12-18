@@ -16,9 +16,9 @@
                         <i class="fas fa-key text-white text-2xl"></i>
                     </div>
                     <h1 class="text-2xl font-bold text-white mb-2">Lupa Password?</h1>
-                    <p class="text-blue-100">Masukkan nomor HP untuk mendapatkan kode reset</p>
+                    <p class="text-blue-100">Masukkan nomor HP untuk atur ulang password</p>
                 </div>
-                <form action="{{ route('forgot.send') }}" method="POST" class="p-8">
+                <form action="{{ route('check.phone') }}" method="POST" class="p-8">
                     @csrf
 
                     <div class="mb-6">
@@ -38,15 +38,16 @@
                                 class="w-full pl-14 pr-4 py-3 border border-yellow-500 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition duration-200"
                             >
                         </div>
-                        <p class="text-black font-semibold text-xm mt-2">Kami akan mengirimkan kode reset ke nomor ini</p>
                     </div>
-
+                    @error('phone')
+                    <p style="color:red">{{ $message }}</p>
+                    @enderror
                     <button
                         type="submit"
                         class="w-full bg-black hover:bg-red-700 text-white font-medium py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex items-center justify-center"
                     >
                         <i class="fas fa-paper-plane mr-2"></i>
-                        Kirim Kode Reset
+                        Lanjut
                     </button>
 
                     <div class="mt-6 text-center">
