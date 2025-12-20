@@ -8,7 +8,7 @@
         @vite('resources/css/app.css')
     </head>
 
-    <body class="bg-gradient-to-br from-black to-red-600 min-h-screen flex flex-col">
+    <body class="bg-linear-to-br from-black to-red-600 min-h-screen flex flex-col">
         <nav class="bg-white/10 shadow-md py-4 px-6 flex justify-between items-center">
             <div class="text-2xl font-bold text-amber-400">
                 SiDapur 🍳
