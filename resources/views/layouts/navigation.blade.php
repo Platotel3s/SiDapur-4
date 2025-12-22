@@ -1,4 +1,4 @@
-<nav class="flex flex-col bg-black text-white w-full h-full p-4 lg:p-6 overflow-y-auto">
+<nav class="flex flex-col bg-black text-white w-full h-full lg:p-6 overflow-y-auto">
     <div class="lg:hidden flex justify-between items-center mb-6 pb-4 border-b border-slate-700">
         <h2 class="text-xl font-bold">Menu</h2>
         <button id="closeMobileMenu" class="p-2 text-white hover:bg-slate-700 rounded-lg transition">
