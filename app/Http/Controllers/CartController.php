@@ -35,8 +35,10 @@ class CartController extends Controller
 
     public function index()
     {
-        $cart = auth()->user()->cart()->with('item.produk')->first();
-
+        $cart=Keranjang::firstOrCreate(
+            ['user_id'=>auth()->id()]
+        );
+        $cart->load('item.produk');
         return view('customer.cart.index', compact('cart'));
     }
 

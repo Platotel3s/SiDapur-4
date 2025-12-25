@@ -28,8 +28,8 @@
 
                 <form action="{{ route('cart.add', $product->id) }}" method="POST" class="flex-1">
                     @csrf
-                    <button class="w-full bg-green-600 hover:bg-green-700 text-xs py-1 rounded text-white">
-                        + Keranjang
+                    <button class="w-full bg-green-600 hover:bg-green-700 text-xs py-1 rounded text-black">
+                        <i class="fas fa-cart-plus"></i> Keranjang
                     </button>
                 </form>
             </div>
