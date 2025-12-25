@@ -3,32 +3,38 @@
 @section('content')
 <div class="max-w-7xl mx-auto px-4 py-6">
     <h1 class="text-2xl font-bold mb-6 text-white">Katalog Produk</h1>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
         @foreach ($products as $product)
-        <div class="bg-white rounded-lg shadow p-4">
-            <img src="{{ asset('storage/' . $product->thumbnail) }}" class="w-full h-40 object-cover rounded">
-            <h2 class="text-md font-semibold">{{ $product->name }}</h2>
-            <p class="text-gray-600 text-sm">{{ Str::limit($product->description, 60) }}</p>
-            <p class="font-bold text-green-600">
+        <div class="bg-white rounded-md shadow-sm p-3 flex flex-col">
+            <img src="{{ asset('storage/' . $product->thumbnail) }}"
+                class="w-full h-28 object-cover rounded mb-2">
+
+            <h2 class="text-sm font-semibold leading-tight line-clamp-1">
+                {{ $product->name }}
+            </h2>
+            <p class="text-xs text-gray-500 line-clamp-2">
+                {{ $product->description }}
+            </p>
+            <p class="text-sm font-bold text-green-600 mt-1">
                 Rp {{ number_format($product->price, 0, ',', '.') }}
             </p>
-            <div class="flex justify-between">
-                <div class="mt-1 flex gap-1 items-center">
-                    <button onclick="openCustomModal({{ $product->id }}, '{{ $product->name }}')"
-                        class="bg-yellow-500 hover:bg-yellow-600 text-black text-sm px-3 py-1 rounded"> <i class="fas fa-edit"></i>
-                        Custom Bumbu
+
+            <div class="mt-auto flex gap-1">
+                <button
+                    onclick="openCustomModal({{ $product->id }}, '{{ $product->name }}')"
+                    class="flex-1 bg-yellow-400 hover:bg-yellow-500 text-xs py-1 rounded">
+                    Custom
+                </button>
+
+                <form action="{{ route('cart.add', $product->id) }}" method="POST" class="flex-1">
+                    @csrf
+                    <button class="w-full bg-green-600 hover:bg-green-700 text-xs py-1 rounded text-white">
+                        + Keranjang
                     </button>
-
-                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                        @csrf
-                        <button class="bg-green-600 hover:bg-green-700 text-black text-sm px-3 py-1 rounded">
-                            + Keranjang
-                        </button>
-                    </form>
-                </div>
-
+                </form>
             </div>
         </div>
+
         @endforeach
     </div>
 </div>
