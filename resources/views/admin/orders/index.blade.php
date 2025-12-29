@@ -132,7 +132,6 @@
                         </span>
                     </div>
                 </div>
-
                 <div class="p-4">
                     <div class="space-y-3">
                         <div>
@@ -238,15 +237,11 @@
                                     <p class="text-sm text-gray-500">{{ $order->user->phone ?? '-' }}</p>
                                 </div>
                             </td>
-
-                            <!-- Total Price -->
                             <td class="py-4 px-6">
                                 <p class="font-bold text-gray-900">
                                     Rp {{ number_format($order->total_price, 0, ',', '.') }}
                                 </p>
                             </td>
-
-                            <!-- Status -->
                             <td class="py-4 px-6">
                                 <span class="px-3 py-1 rounded-full text-sm font-medium
                                     {{ $order->status == 'Pending' ? 'bg-yellow-100 text-yellow-800' :
@@ -338,8 +333,6 @@
                 </table>
             </div>
         </div>
-
-        <!-- Pagination -->
         @if($orders->hasPages())
         <div class="mt-6">
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
@@ -347,8 +340,6 @@
             </div>
         </div>
         @endif
-
-        <!-- Guide Section -->
         <div class="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-6">
             <div class="flex items-start gap-4">
                 <div class="shrink-0">
@@ -385,8 +376,6 @@
         </div>
     </div>
 </div>
-
-<!-- Confirmation Modal -->
 <div id="confirmModal" class="hidden fixed inset-0 bg-transparent bg-opacity-50 z-50 flex items-center justify-center p-4">
     <div class="bg-linear-to-br from-black to-red-500 border border-yellow-500 rounded-xl p-6 w-full max-w-md shadow-lg">
         <h3 class="text-lg font-bold mb-4 text-white">Konfirmasi Pembayaran</h3>
