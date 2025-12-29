@@ -16,7 +16,6 @@
             Tambah Produk
         </a>
     </div>
-
     <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
         <div class="hidden md:block overflow-x-auto">
             <table class="w-full min-w-full">
