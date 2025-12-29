@@ -16,7 +16,7 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, $role): Response
     {
         if (auth()->check() && auth()->user()->role !== $role) {
-            abort(403, 'Ngapain tod !');
+            abort(403, 'Anda dilarang kesini !');
         }
 
         return $next($request);
