@@ -107,4 +107,7 @@ class AdminController extends Controller
         $pilih->delete();
         return back()->with('success', 'Berhasil hapus customer '.$pilih->name);
     }
+    public function FunctionName() {
+        # code...
+    }
 }
