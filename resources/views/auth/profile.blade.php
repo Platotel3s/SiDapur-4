@@ -5,6 +5,7 @@
 
 <div class="max-w-2xl mx-auto text-white">
     <h2 class="text-2xl font-semibold mb-6">Profil Akun</h2>
+
     <div class="bg-black/40 p-5 rounded-xl shadow-xl mb-8 border border-white/10">
         <h3 class="text-xl font-semibold mb-4">Informasi Pengguna</h3>
 
@@ -18,6 +19,7 @@
             </div>
         </div>
     </div>
+
     <div class="bg-black/40 p-5 rounded-xl shadow-xl mb-8 border border-white/10">
         <h3 class="text-xl font-semibold mb-4">Ganti Password</h3>
 
@@ -37,23 +39,35 @@
 
         <form action="{{ route('profile.password') }}" method="POST" class="space-y-4">
             @csrf
-
-            <div>
+            <div class="relative">
                 <label class="block mb-1">Password Lama</label>
-                <input type="password" name="current_password"
+                <input type="password" name="current_password" id="current_password"
                     class="w-full px-3 py-2 rounded bg-black/60 border border-white/20 focus:border-red-500 outline-none">
-            </div>
 
-            <div>
+                <button type="button" onclick="togglePassword('current_password', this)"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white ">
+                    👁
+                </button>
+            </div>
+            <div class="relative">
                 <label class="block mb-1">Password Baru</label>
-                <input type="password" name="password"
+                <input type="password" name="password" id="password"
                     class="w-full px-3 py-2 rounded bg-black/60 border border-white/20 focus:border-red-500 outline-none">
-            </div>
 
-            <div>
+                <button type="button" onclick="togglePassword('password', this)"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white">
+                    👁
+                </button>
+            </div>
+            <div class="relative">
                 <label class="block mb-1">Konfirmasi Password Baru</label>
-                <input type="password" name="password_confirmation"
+                <input type="password" name="password_confirmation" id="password_confirmation"
                     class="w-full px-3 py-2 rounded bg-black/60 border border-white/20 focus:border-red-500 outline-none">
+
+                <button type="button" onclick="togglePassword('password_confirmation', this)"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white">
+                    👁
+                </button>
             </div>
 
             <button class="w-full bg-red-600 hover:bg-red-700 py-2 rounded font-semibold transition">
@@ -62,5 +76,19 @@
         </form>
     </div>
 </div>
+
+<script>
+function togglePassword(id, btn) {
+    const input = document.getElementById(id);
+
+    if (input.type === "password") {
+        input.type = "text";
+        btn.textContent = "🙈";
+    } else {
+        input.type = "password";
+        btn.textContent = "👁";
+    }
+}
+</script>
 
 @endsection
